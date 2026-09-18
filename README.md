@@ -29,41 +29,6 @@ pip install -r requirements.txt
 python3 main.py analyze <binary>
 
 
----
-
-### 🌐 ШАГ 4: Инициализация Git и отправка на GitHub
-
-1. Зайди на [github.com](https://github.com/) и создай **новый пустой репозиторий** с именем `pwn-automation-tool`. Не добавляй туда README или `.gitignore`, создай его полностью пустым.
-2. Скопируй URL созданного репозитория (например: `https://github.com/твой-ник/pwn-automation-tool.git`).
-
-Выполни в терминале:
-```bash
-cd ~/pwn-automation-tool
-
-# Инициализируем git
-git init
-git add .
-git commit -m "Initial commit: Pwn Automation Framework v1.0"
-
-# Привязываем к твоему репозиторию (ЗАМЕНИ URL НА СВОЙ!)
-git branch -M main
-git remote add origin https://github.com/ТВОЙ_НИК/pwn-automation-tool.git
-
-# Отправляем код на GitHub
-git push -u origin main
-
-🏆 ШАГ 5: Проверка портативности (Магия Docker)
-
-Теперь проверим, что инструмент работает изолированно и переносимо.
-Убедись, что у тебя установлен Docker (в Kali он обычно есть, или sudo apt install docker.io).
-
-# 1. Собираем образ (это создаст переносимую "коробку" с твоим инструментом)
-docker build -t pwn-auto .
-
-# 2. Тестируем! (Скачаем тестовый бинарник прямо в папку и прогоним через Docker)
-wget https://ropemporium.com/binary/ret2win.zip
-unzip ret2win.zip
-chmod +x ret2win
 
 # Запускаем наш инструмент ВНУТРИ контейнера, передавая ему текущую папку
 docker run --rm -v $(pwd):/app pwn-auto analyze ./ret2win
