@@ -1,37 +1,84 @@
 # 🐇 Pwn Automation Framework
 
-Автоматизированный инструмент для анализа бинарных файлов и поиска уязвимостей (Buffer Overflow, Format String), разработанный для CTF и обучения информационной безопасности.
+Автоматизированный инструмент для анализа бинарных файлов, поиска уязвимостей (Buffer Overflow, Format String) и обхода защит (Canary Leak). Разработан для CTF-соревнований и обучения информационной безопасности.
 
 ## 🚀 Возможности
-- **Анализ защит**: Автоматический checksec (PIE, Canary, NX, RELRO).
-- **Поиск уязвимостей**: Сканирование на опасные функции (`gets`, `printf`, `strcpy`).
-- **Auto Offset Finder**: Автоматический расчет смещения до EIP/RIP с помощью GDB и cyclic pattern.
-- **Stack Analyzer**: Анализ структуры стека функции через дизассемблер.
+
+- **Анализ защит:** Автоматический `checksec` (PIE, Canary, NX, RELRO, Stripped).
+- **Поиск уязвимостей:** Сканирование PLT/GOT на опасные функции (`gets`, `printf`, `strcpy`, `system`).
+- **Auto Offset Finder:** Автоматический расчет смещения до EIP/RIP с помощью `cyclic` pattern и GDB.
+- **Format String Analyzer:** Автопоиск смещения пользовательского ввода в стеке для эксплуатации уязвимостей форматной строки.
+- **Canary Bypass Analyzer:** Точный GDB-анализ структуры стека функции для математически выверенного обхода Stack Canary.
+- **REST API & Python Client:** Возможность запуска анализа удаленно через API или удобный CLI-клиент.
 
 ## 📦 Установка и запуск (Docker)
 
-Самый простой способ запустить инструмент на любой ОС (Windows, macOS, Linux):
+Самый простой и надежный способ запустить инструмент на любой ОС (Windows, macOS, Linux), так как все зависимости (pwntools, gdb, radare2) уже включены в образ.
 
 1. Склонируйте репозиторий:
    ```bash
-   git clone https://github.com/ТВОЙ_НИК/pwn-automation-tool.git
+   git clone https://github.com/madcap-syd/pwn-automation-tool.git
    cd pwn-automation-tool
+
+
 2. Соберите Docker-образ:
-      docker build -t pwn-auto .
-3. Запустите анализ (пример):
-      docker run --rm -v $(pwd):/app pwn-auto analyze ./target_binary
+   ```bash
+      # Полный анализ бинарника
+   docker run --rm -v $(pwd):/app pwn-auto analyze ./target_binary
+   
+   # Автоматический поиск смещения BOF
    docker run --rm -v $(pwd):/app pwn-auto find-offset ./target_binary
-(Флаг -v $(pwd):/app подключает твою текущую папку внутрь контейнера, чтобы инструмент видел твои файлы).
+   
+   # Анализ стека для обхода Canary
+   docker run --rm -v $(pwd):/app pwn-auto bypass-canary ./target_binary
 
-🛠 Локальный запуск (без Docker)
+   💡 Флаг -v $(pwd):/app подключает твою текущую папку внутрь контейнера, чтобы инструмент видел твои файлы.
 
-pip install -r requirements.txt
-python3 main.py analyze <binary>
+## 🛠 Локальный запуск (без Docker)
 
+Требует установленной ОС Linux (рекомендуется Kali Linux), Python 3.8+ и GDB.
 
+1. Установите зависимости:
+   ```bash
+      pip3 install -r requirements.txt
 
-# Запускаем наш инструмент ВНУТРИ контейнера, передавая ему текущую папку
-docker run --rm -v $(pwd):/app pwn-auto analyze ./ret2win
-docker run --rm -v $(pwd):/app pwn-auto find-offset ./ret2win
+2. Запустите инструмент:
+   ```bash
+   python3 main.py analyze ./target_binary
+   python3 main.py help  # Показать все доступные команды
+
+## 🌐 Использование API и Клиента
+
+Фреймворк включает в себя FastAPI сервер и Python-клиент для автоматизации в пайплайнах.
+
+1. Запустите API сервер:
+   ```bash
+   python3 api_server.py
+
+2. Используйте клиент для удаленного анализа:
+   ```bash
+   python3 client.py analyze http://localhost:8000 ./target_binary
+
+## 📂 Структура проекта
+
+.
+├── main.py                 # Точка входа CLI
+├── api_server.py           # FastAPI сервер
+├── client.py               # Python клиент для API
+├── modules/
+│   ├── binary_analyzer.py  # Анализ защит и функций
+│   ├── offset_finder.py    # Поиск смещения BOF (cyclic + GDB)
+│   ├── fmtstr_analyzer.py  # Поиск смещения Format String
+│   └── canary_analyzer.py  # GDB-анализ стека для обхода Canary
+├── Dockerfile              # Конфигурация Docker-образа
+└── requirements.txt        # Зависимости Python
+
+## 🤝 Вклад в проект
+
+Pull Requests приветствуются! Для серьезных изменений, пожалуйста, сначала откройте Issue, чтобы обсудить, что вы хотите изменить.
+
+## 📜 Лицензия
+
+Этот проект распространяется под лицензией MIT. Используйте ответственно и только в образовательных целях или на легальных CTF-площадках.
 
 
