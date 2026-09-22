@@ -61,7 +61,7 @@
 
 ## 📂 Структура проекта
 
-.
+```
 ├── main.py                 # Точка входа CLI
 ├── api_server.py           # FastAPI сервер
 ├── client.py               # Python клиент для API
@@ -72,7 +72,7 @@
 │   └── canary_analyzer.py  # GDB-анализ стека для обхода Canary
 ├── Dockerfile              # Конфигурация Docker-образа
 └── requirements.txt        # Зависимости Python
-
+```
 ## 🤝 Вклад в проект
 
 Pull Requests приветствуются! Для серьезных изменений, пожалуйста, сначала откройте Issue, чтобы обсудить, что вы хотите изменить.
