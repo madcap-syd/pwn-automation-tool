@@ -1,0 +1,314 @@
+{
+    "binary": "Hospital",
+    "arch": "x86_64",
+    "bits": "64",
+    "functions": [
+        {
+            "name": "sym.deregister_tm_clones",
+            "address": "0x1150"
+        },
+        {
+            "name": "sym.register_tm_clones",
+            "address": "0x1180"
+        },
+        {
+            "name": "sym._fini",
+            "address": "0x17dc"
+        },
+        {
+            "name": "sym.buyMedicine",
+            "address": "0x136f"
+        },
+        {
+            "name": "sym.showTechnicalInfo",
+            "address": "0x1701"
+        },
+        {
+            "name": "sym.showSchedule",
+            "address": "0x12ce"
+        },
+        {
+            "name": "sym.leave",
+            "address": "0x1209"
+        },
+        {
+            "name": "sym.writeDoctorReview",
+            "address": "0x1501"
+        },
+        {
+            "name": "main",
+            "address": "0x1590"
+        },
+        {
+            "name": "sym.enterPatientCard",
+            "address": "0x122a"
+        },
+        {
+            "name": "sym._init",
+            "address": "0x1000"
+        }
+    ],
+    "dangerous_calls": [
+        {
+            "caller": "sym.buyMedicine",
+            "callee": "printf",
+            "address": "0x13bf"
+        },
+        {
+            "caller": "sym.buyMedicine",
+            "callee": "printf",
+            "address": "0x141e"
+        },
+        {
+            "caller": "sym.buyMedicine",
+            "callee": "printf",
+            "address": "0x14cd"
+        },
+        {
+            "caller": "sym.writeDoctorReview",
+            "callee": "printf",
+            "address": "0x154c"
+        },
+        {
+            "caller": "sym.writeDoctorReview",
+            "callee": "printf",
+            "address": "0x1588"
+        },
+        {
+            "caller": "main",
+            "callee": "printf",
+            "address": "0x1641"
+        },
+        {
+            "caller": "sym.showTechnicalInfo",
+            "callee": "printf",
+            "address": "0x174f"
+        },
+        {
+            "caller": "sym.showTechnicalInfo",
+            "callee": "printf",
+            "address": "0x17a4"
+        },
+        {
+            "caller": "sym.enterPatientCard",
+            "callee": "read",
+            "address": "0x1292"
+        },
+        {
+            "caller": "sym.enterPatientCard",
+            "callee": "read",
+            "address": "0x12c6"
+        }
+    ],
+    "interesting_strings": [
+        {
+            "address": "0x2548",
+            "value": "\\n\u0421\u043f\u0430\u0441\u0438\u0431\u043e \u0437\u0430 \u0432\u0430\u0448 \u043e\u0442\u0437\u044b\u0432: '%s'. \u0412\u0430\u0448\u0435 \u043c\u043d\u0435\u043d\u0438\u0435 \u0432\u0430\u0436\u043d\u043e \u0434\u043b\u044f \u043d\u0430\u0441!\\n\\n"
+        },
+        {
+            "address": "0x2790",
+            "value": "\u0410\u0434\u0440\u0435\u0441 \u044d\u0442\u043e\u0439 \u0444\u0443\u043d\u043a\u0446\u0438\u0438: %p\\n"
+        },
+        {
+            "address": "0x282c",
+            "value": "\u0414\u0430\u0442\u0430 \u0441\u0431\u043e\u0440\u043a\u0438: %s %s\\n"
+        }
+    ],
+    "gadgets": [
+        {
+            "address": "0x0000000000001785",
+            "instruction": "adc byte ptr [rax], al ; add byte ptr [rax - 0x77], cl ; ret 0x8d48"
+        },
+        {
+            "address": "0x00000000000012c5",
+            "instruction": "add al, ch ; add eax, 0x90fffffe ; leave ; ret"
+        },
+        {
+            "address": "0x0000000000001438",
+            "instruction": "add al, ch ; ret 0xfffc"
+        },
+        {
+            "address": "0x0000000000001787",
+            "instruction": "add byte ptr [rax - 0x77], cl ; ret 0x8d48"
+        },
+        {
+            "address": "0x0000000000001173",
+            "instruction": "add byte ptr [rax], 0 ; add byte ptr [rax], al ; ret"
+        },
+        {
+            "address": "0x000000000000117b",
+            "instruction": "add byte ptr [rax], 0 ; pop rdx ; ret"
+        },
+        {
+            "address": "0x0000000000001436",
+            "instruction": "add byte ptr [rax], al ; add al, ch ; ret 0xfffc"
+        },
+        {
+            "address": "0x0000000000001174",
+            "instruction": "add byte ptr [rax], al ; add byte ptr [rax], al ; ret"
+        },
+        {
+            "address": "0x0000000000001056",
+            "instruction": "add byte ptr [rax], al ; add cl, ch ; ret 0xffff"
+        },
+        {
+            "address": "0x00000000000011f0",
+            "instruction": "add byte ptr [rax], al ; add dword ptr [rbp - 0x3d], ebx ; nop dword ptr [rax] ; ret"
+        },
+        {
+            "address": "0x000000000000117c",
+            "instruction": "add byte ptr [rax], al ; pop rdx ; ret"
+        },
+        {
+            "address": "0x0000000000001176",
+            "instruction": "add byte ptr [rax], al ; ret"
+        },
+        {
+            "address": "0x00000000000011b5",
+            "instruction": "add byte ptr [rax], r8b ; ret"
+        },
+        {
+            "address": "0x00000000000011f1",
+            "instruction": "add byte ptr [rcx], al ; pop rbp ; ret"
+        },
+        {
+            "address": "0x0000000000001497",
+            "instruction": "add byte ptr [rcx], bh ; ret 0x387f"
+        },
+        {
+            "address": "0x00000000000011ef",
+            "instruction": "add byte ptr cs:[rax], al ; add dword ptr [rbp - 0x3d], ebx ; nop dword ptr [rax] ; ret"
+        },
+        {
+            "address": "0x0000000000001058",
+            "instruction": "add cl, ch ; ret 0xffff"
+        },
+        {
+            "address": "0x00000000000011f2",
+            "instruction": "add dword ptr [rbp - 0x3d], ebx ; nop dword ptr [rax] ; ret"
+        },
+        {
+            "address": "0x00000000000012c7",
+            "instruction": "add eax, 0x90fffffe ; leave ; ret"
+        },
+        {
+            "address": "0x0000000000001017",
+            "instruction": "add esp, 8 ; ret"
+        },
+        {
+            "address": "0x0000000000001016",
+            "instruction": "add rsp, 8 ; ret"
+        },
+        {
+            "address": "0x00000000000017df",
+            "instruction": "cli ; sub rsp, 8 ; add rsp, 8 ; ret"
+        },
+        {
+            "address": "0x00000000000012cc",
+            "instruction": "leave ; ret"
+        },
+        {
+            "address": "0x00000000000011b1",
+            "instruction": "loopne 0x1219 ; nop dword ptr [rax + rax] ; ret"
+        },
+        {
+            "address": "0x00000000000011ec",
+            "instruction": "mov byte ptr [rip + 0x2e2d], 1 ; pop rbp ; ret"
+        },
+        {
+            "address": "0x00000000000012cb",
+            "instruction": "nop ; leave ; ret"
+        },
+        {
+            "address": "0x000000000000136c",
+            "instruction": "nop ; pop rbp ; ret"
+        },
+        {
+            "address": "0x00000000000011b3",
+            "instruction": "nop dword ptr [rax + rax] ; ret"
+        },
+        {
+            "address": "0x0000000000001171",
+            "instruction": "nop dword ptr [rax] ; ret"
+        },
+        {
+            "address": "0x00000000000011b2",
+            "instruction": "nop word ptr [rax + rax] ; ret"
+        },
+        {
+            "address": "0x00000000000011af",
+            "instruction": "or bh, bh ; loopne 0x1219 ; nop dword ptr [rax + rax] ; ret"
+        },
+        {
+            "address": "0x000000000000114c",
+            "instruction": "pop rax ; ret"
+        },
+        {
+            "address": "0x00000000000011f3",
+            "instruction": "pop rbp ; ret"
+        },
+        {
+            "address": "0x000000000000117e",
+            "instruction": "pop rdx ; ret"
+        },
+        {
+            "address": "0x000000000000101a",
+            "instruction": "ret"
+        },
+        {
+            "address": "0x00000000000014af",
+            "instruction": "ret 0x1589"
+        },
+        {
+            "address": "0x0000000000001499",
+            "instruction": "ret 0x387f"
+        },
+        {
+            "address": "0x000000000000178a",
+            "instruction": "ret 0x8d48"
+        },
+        {
+            "address": "0x000000000000143a",
+            "instruction": "ret 0xfffc"
+        },
+        {
+            "address": "0x000000000000105a",
+            "instruction": "ret 0xffff"
+        },
+        {
+            "address": "0x00000000000012e1",
+            "instruction": "retf"
+        },
+        {
+            "address": "0x0000000000001011",
+            "instruction": "sal byte ptr [rdx + rax - 1], 0xd0 ; add rsp, 8 ; ret"
+        },
+        {
+            "address": "0x00000000000011ee",
+            "instruction": "sub eax, 0x100002e ; pop rbp ; ret"
+        },
+        {
+            "address": "0x0000000000001495",
+            "instruction": "sub eax, dword ptr [rax] ; add byte ptr [rcx], bh ; ret 0x387f"
+        },
+        {
+            "address": "0x00000000000017e1",
+            "instruction": "sub esp, 8 ; add rsp, 8 ; ret"
+        },
+        {
+            "address": "0x00000000000017e0",
+            "instruction": "sub rsp, 8 ; add rsp, 8 ; ret"
+        },
+        {
+            "address": "0x000000000000114a",
+            "instruction": "test byte ptr [rax], al ; pop rax ; ret"
+        }
+    ],
+    "safe_return_addresses": [
+        {
+            "name": "main",
+            "address": "0x1590"
+        }
+    ],
+    "rop_targets": {}
+}

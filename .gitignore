@@ -8,3 +8,18 @@ env/
 *.elf
 vuln*
 flag.txt	
+
+# Артефакты анализа
+output/*.py
+!output/README.md
+
+# Бинарники CTF задач
+*.elf
+*.bin
+Hospital
+ret2win
+
+# Python
+__pycache__/
+*.pyc
+venv/

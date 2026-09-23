@@ -1,0 +1,88 @@
+{
+    "binary": "ret2win",
+    "arch": "x86_64",
+    "bits": "64",
+    "functions": [
+        {
+            "name": "sym.deregister_tm_clones",
+            "address": "0x4005f0"
+        },
+        {
+            "name": "sym.register_tm_clones",
+            "address": "0x400620"
+        },
+        {
+            "name": "sym.pwnme",
+            "address": "0x4006e8"
+        },
+        {
+            "name": "sym.ret2win",
+            "address": "0x400756"
+        },
+        {
+            "name": "sym.__libc_csu_fini",
+            "address": "0x4007f0"
+        },
+        {
+            "name": "sym._fini",
+            "address": "0x4007f4"
+        },
+        {
+            "name": "sym.__libc_csu_init",
+            "address": "0x400780"
+        },
+        {
+            "name": "sym._dl_relocate_static_pie",
+            "address": "0x4005e0"
+        },
+        {
+            "name": "main",
+            "address": "0x400697"
+        },
+        {
+            "name": "sym._init",
+            "address": "0x400528"
+        }
+    ],
+    "dangerous_calls": [
+        {
+            "caller": "sym.ret2win",
+            "callee": "system",
+            "address": "0x400769"
+        },
+        {
+            "caller": "sym.pwnme",
+            "callee": "printf",
+            "address": "0x40072e"
+        },
+        {
+            "caller": "sym.pwnme",
+            "callee": "read",
+            "address": "0x400744"
+        }
+    ],
+    "interesting_strings": [
+        {
+            "address": "0x400926",
+            "value": "Well done! Here's your flag:"
+        },
+        {
+            "address": "0x400943",
+            "value": "/bin/cat flag.txt"
+        }
+    ],
+    "gadgets": [],
+    "safe_return_addresses": [
+        {
+            "name": "main",
+            "address": "0x400697"
+        },
+        {
+            "name": "sym.__libc_csu_fini",
+            "address": "0x4007f0"
+        }
+    ],
+    "rop_targets": {
+        "system": "0x400560"
+    }
+}
