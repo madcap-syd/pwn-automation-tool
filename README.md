@@ -68,8 +68,9 @@
    python3 client.py analyze http://localhost:8000 ./target_binary
 
 ## 📂 Структура проекта
+```
 
- ```pwn-automation-tool/
+pwn-automation-tool/
 ├── main.py                 # Точка входа CLI
 ├── api_server.py           # FastAPI сервер
 ├── client.py               # Python клиент для API
