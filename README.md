@@ -69,7 +69,7 @@
 
 ## 📂 Структура проекта
 
-``pwn-automation-tool/
+ ```pwn-automation-tool/
 ├── main.py                 # Точка входа CLI
 ├── api_server.py           # FastAPI сервер
 ├── client.py               # Python клиент для API
@@ -85,7 +85,7 @@
 │   └── canary_analyzer.py  # GDB-анализ стека для обхода Canary
 ├── output/                 # Директория для JSON-отчетов и артефактов
 ├── Dockerfile              # Конфигурация Docker-образа
-└── requirements.txt        # Зависимости Python``
+└── requirements.txt        # Зависимости Python  ```
 
 ## 🤝 Вклад в проект
 
