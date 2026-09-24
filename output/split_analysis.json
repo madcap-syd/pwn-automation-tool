@@ -1,0 +1,269 @@
+{
+    "binary": "split",
+    "arch": "x86_64",
+    "bits": "64",
+    "functions": [
+        {
+            "name": "sym.deregister_tm_clones",
+            "address": "0x4005f0"
+        },
+        {
+            "name": "sym.register_tm_clones",
+            "address": "0x400620"
+        },
+        {
+            "name": "sym.pwnme",
+            "address": "0x4006e8"
+        },
+        {
+            "name": "sym.usefulFunction",
+            "address": "0x400742"
+        },
+        {
+            "name": "sym.__libc_csu_fini",
+            "address": "0x4007d0"
+        },
+        {
+            "name": "sym._fini",
+            "address": "0x4007d4"
+        },
+        {
+            "name": "sym.__libc_csu_init",
+            "address": "0x400760"
+        },
+        {
+            "name": "sym._dl_relocate_static_pie",
+            "address": "0x4005e0"
+        },
+        {
+            "name": "main",
+            "address": "0x400697"
+        },
+        {
+            "name": "sym._init",
+            "address": "0x400528"
+        }
+    ],
+    "dangerous_calls": [
+        {
+            "caller": "sym.usefulFunction",
+            "callee": "system",
+            "address": "0x40074b"
+        },
+        {
+            "caller": "sym.pwnme",
+            "callee": "printf",
+            "address": "0x40071a"
+        },
+        {
+            "caller": "sym.pwnme",
+            "callee": "read",
+            "address": "0x400730"
+        }
+    ],
+    "interesting_strings": [
+        {
+            "address": "0x601060",
+            "value": "/bin/cat flag.txt"
+        }
+    ],
+    "gadgets": [
+        {
+            "address": "0x00000000004005d9",
+            "instruction": "add ah, dh ; nop dword ptr [rax + rax] ; repz ret"
+        },
+        {
+            "address": "0x00000000004005df",
+            "instruction": "add bl, dh ; ret"
+        },
+        {
+            "address": "0x00000000004007cd",
+            "instruction": "add byte ptr [rax], al ; add bl, dh ; ret"
+        },
+        {
+            "address": "0x00000000004007cb",
+            "instruction": "add byte ptr [rax], al ; add byte ptr [rax], al ; add bl, dh ; ret"
+        },
+        {
+            "address": "0x00000000004006e2",
+            "instruction": "add byte ptr [rax], al ; add byte ptr [rax], al ; pop rbp ; ret"
+        },
+        {
+            "address": "0x00000000004007cc",
+            "instruction": "add byte ptr [rax], al ; add byte ptr [rax], al ; repz ret"
+        },
+        {
+            "address": "0x0000000000400616",
+            "instruction": "add byte ptr [rax], al ; pop rbp ; ret"
+        },
+        {
+            "address": "0x00000000004005de",
+            "instruction": "add byte ptr [rax], al ; repz ret"
+        },
+        {
+            "address": "0x0000000000400615",
+            "instruction": "add byte ptr [rax], r8b ; pop rbp ; ret"
+        },
+        {
+            "address": "0x00000000004005dd",
+            "instruction": "add byte ptr [rax], r8b ; repz ret"
+        },
+        {
+            "address": "0x0000000000400677",
+            "instruction": "add byte ptr [rcx], al ; pop rbp ; ret"
+        },
+        {
+            "address": "0x0000000000400678",
+            "instruction": "add dword ptr [rbp - 0x3d], ebx ; nop dword ptr [rax + rax] ; repz ret"
+        },
+        {
+            "address": "0x000000000040053b",
+            "instruction": "add esp, 8 ; ret"
+        },
+        {
+            "address": "0x000000000040053a",
+            "instruction": "add rsp, 8 ; ret"
+        },
+        {
+            "address": "0x00000000004005d8",
+            "instruction": "and byte ptr [rax], al ; hlt ; nop dword ptr [rax + rax] ; repz ret"
+        },
+        {
+            "address": "0x00000000004007ac",
+            "instruction": "fmul qword ptr [rax - 0x7d] ; ret"
+        },
+        {
+            "address": "0x00000000004005da",
+            "instruction": "hlt ; nop dword ptr [rax + rax] ; repz ret"
+        },
+        {
+            "address": "0x0000000000400740",
+            "instruction": "leave ; ret"
+        },
+        {
+            "address": "0x0000000000400288",
+            "instruction": "loope 0x40025a ; sar dword ptr [rdi - 0x5133700c], 0x1d ; retf 0xe99e"
+        },
+        {
+            "address": "0x0000000000400672",
+            "instruction": "mov byte ptr [rip + 0x200a07], 1 ; pop rbp ; ret"
+        },
+        {
+            "address": "0x00000000004006e1",
+            "instruction": "mov eax, 0 ; pop rbp ; ret"
+        },
+        {
+            "address": "0x000000000040073f",
+            "instruction": "nop ; leave ; ret"
+        },
+        {
+            "address": "0x0000000000400750",
+            "instruction": "nop ; pop rbp ; ret"
+        },
+        {
+            "address": "0x0000000000400613",
+            "instruction": "nop dword ptr [rax + rax] ; pop rbp ; ret"
+        },
+        {
+            "address": "0x00000000004005db",
+            "instruction": "nop dword ptr [rax + rax] ; repz ret"
+        },
+        {
+            "address": "0x0000000000400655",
+            "instruction": "nop dword ptr [rax] ; pop rbp ; ret"
+        },
+        {
+            "address": "0x0000000000400675",
+            "instruction": "or ah, byte ptr [rax] ; add byte ptr [rcx], al ; pop rbp ; ret"
+        },
+        {
+            "address": "0x00000000004007bc",
+            "instruction": "pop r12 ; pop r13 ; pop r14 ; pop r15 ; ret"
+        },
+        {
+            "address": "0x00000000004007be",
+            "instruction": "pop r13 ; pop r14 ; pop r15 ; ret"
+        },
+        {
+            "address": "0x00000000004007c0",
+            "instruction": "pop r14 ; pop r15 ; ret"
+        },
+        {
+            "address": "0x00000000004007c2",
+            "instruction": "pop r15 ; ret"
+        },
+        {
+            "address": "0x00000000004007bb",
+            "instruction": "pop rbp ; pop r12 ; pop r13 ; pop r14 ; pop r15 ; ret"
+        },
+        {
+            "address": "0x00000000004007bf",
+            "instruction": "pop rbp ; pop r14 ; pop r15 ; ret"
+        },
+        {
+            "address": "0x0000000000400618",
+            "instruction": "pop rbp ; ret"
+        },
+        {
+            "address": "0x00000000004007c3",
+            "instruction": "pop rdi ; ret"
+        },
+        {
+            "address": "0x00000000004007c1",
+            "instruction": "pop rsi ; pop r15 ; ret"
+        },
+        {
+            "address": "0x00000000004007bd",
+            "instruction": "pop rsp ; pop r13 ; pop r14 ; pop r15 ; ret"
+        },
+        {
+            "address": "0x00000000004005e0",
+            "instruction": "repz ret"
+        },
+        {
+            "address": "0x000000000040053e",
+            "instruction": "ret"
+        },
+        {
+            "address": "0x0000000000400542",
+            "instruction": "ret 0x200a"
+        },
+        {
+            "address": "0x0000000000400291",
+            "instruction": "retf 0xe99e"
+        },
+        {
+            "address": "0x0000000000400535",
+            "instruction": "sal byte ptr [rdx + rax - 1], 0xd0 ; add rsp, 8 ; ret"
+        },
+        {
+            "address": "0x000000000040028a",
+            "instruction": "sar dword ptr [rdi - 0x5133700c], 0x1d ; retf 0xe99e"
+        },
+        {
+            "address": "0x00000000004007d5",
+            "instruction": "sub esp, 8 ; add rsp, 8 ; ret"
+        },
+        {
+            "address": "0x00000000004007d4",
+            "instruction": "sub rsp, 8 ; add rsp, 8 ; ret"
+        },
+        {
+            "address": "0x00000000004007ca",
+            "instruction": "test byte ptr [rax], al ; add byte ptr [rax], al ; add byte ptr [rax], al ; repz ret"
+        }
+    ],
+    "safe_return_addresses": [
+        {
+            "name": "main",
+            "address": "0x400697"
+        },
+        {
+            "name": "sym.__libc_csu_fini",
+            "address": "0x4007d0"
+        }
+    ],
+    "rop_targets": {
+        "system": "0x400560"
+    }
+}
