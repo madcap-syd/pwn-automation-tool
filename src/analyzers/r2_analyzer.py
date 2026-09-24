@@ -21,89 +21,95 @@ def analyze_binary(binary_path: str, output_json: str):
         "interesting_strings": [],
         "gadgets": [],
         "safe_return_addresses": [],
-        "rop_targets": {}
+        "rop_targets": {},
+        "vulnerability_indicators": {}
     }
 
     # 1. Функции
+    funcs = []
     try:
         funcs = json.loads(r2.cmd('aflj'))
         for f in funcs:
             name = f.get('name', '')
-            if not name.startswith('fcn.') and not name.startswith('sym.imp.') and not name.startswith('entry'):
+            if not name.startswith('fcn.') and not name.startswith('entry'):
                 report["functions"].append({"name": name, "address": hex(f.get('addr', 0))})
     except: pass
+
+    # Создаем единый список всех имен функций в нижнем регистре для надежного поиска
+    all_func_names_lower = [f.get('name', '').lower() for f in funcs]
 
     # Безопасные адреса
     priority_names = ["main", "sym._exit", "exit", "sym.__libc_csu_fini"]
     for target_name in priority_names:
         for f in funcs:
             if f.get('name', '') == target_name:
-                report["safe_return_addresses"].append({
-                    "name": f['name'],
-                    "address": hex(f.get('addr', 0))
-                })
+                report["safe_return_addresses"].append({"name": f['name'], "address": hex(f.get('addr', 0))})
                 break
 
-    # 2. Опасные вызовы
-    dangerous_funcs = ["read", "scanf", "gets", "strcpy", "strcat", "sprintf", "printf", "system", "execve"]
-    try:
-        imports = json.loads(r2.cmd('iij'))
-        for imp in imports:
-            name = imp.get('name', '')
-            if name in dangerous_funcs:
-                xrefs_str = r2.cmd(f'axtj @ sym.imp.{name}')
-                if xrefs_str and xrefs_str.strip() != '[]':
-                    for x in json.loads(xrefs_str):
-                        func_info = r2.cmd(f'afij @ {x["from"]}')
-                        func_name = "unknown"
-                        if func_info and func_info.strip() != '[]':
-                            try: func_name = json.loads(func_info)[0].get('name', 'unknown')
-                            except: pass
-                        report["dangerous_calls"].append({"caller": func_name, "callee": name, "address": hex(x["from"])})
-                        
-                        if name in ["system", "execve"]:
-                            report["rop_targets"][name] = hex(imp.get('plt', 0))
-    except: pass
+    # 2. Опасные вызовы (ищем по именам функций, включая sym.imp.__isoc99_scanf и т.д.)
+    dangerous_inputs = ['scanf', 'gets', 'strcpy', 'strcat', 'read', 'sprintf']
+    dangerous_exec = ['system', 'execve', 'popen']
+    
+    malloc_count = sum(1 for name in all_func_names_lower if 'malloc' in name)
+    has_dangerous_input = any(any(inp in name for name in all_func_names_lower) for inp in dangerous_inputs)
+    has_dangerous_execution = any(any(exec_fn in name for name in all_func_names_lower) for exec_fn in dangerous_exec)
+
+    # Заполняем dangerous_calls для отчета
+    for f in funcs:
+        name = f.get('name', '').lower()
+        if any(d in name for d in dangerous_inputs + dangerous_exec + ['malloc', 'free']):
+            report["dangerous_calls"].append({"caller": "global/import", "callee": f.get('name', ''), "address": hex(f.get('addr', 0))})
+            if any(d in name for d in dangerous_exec):
+                report["rop_targets"][f.get('name', '').replace('sym.imp.', '')] = hex(f.get('addr', 0))
 
     # 3. Строки
+    strings_list = []
     try:
-        strings = json.loads(r2.cmd('izj'))
-        for s in strings:
+        strings_list = json.loads(r2.cmd('izj'))
+        for s in strings_list:
             val = s.get('string', '')
             if any(kw in val for kw in ["%p", "%x", "%s", "%n", "/bin/sh", "flag", "cat ", "system", "Welcome", "Duckerz"]):
                 report["interesting_strings"].append({"address": hex(s.get('vaddr', 0)), "value": val.strip()})
-                
                 if "/bin/sh" in val:
                     report["rop_targets"]["bin_sh"] = hex(s.get('vaddr', 0))
     except: pass
 
-    # 4. Гаджеты через ROPgadget (надёжнее, чем /R в radare2)
+    has_address_leak = any('%p' in s.get('string', '') for s in strings_list)
+
+    # 4. Гаджеты через ROPgadget
     print("[*] Ищу ROP-гаджеты через ROPgadget...")
     try:
-        result = subprocess.run(
-            ['ROPgadget', '--binary', str(binary_path), '--nojop'],
-            capture_output=True,
-            text=True,
-            timeout=10
-        )
-        
-        # Парсим вывод ROPgadget
+        result = subprocess.run(['ROPgadget', '--binary', str(binary_path), '--nojop'], capture_output=True, text=True, timeout=10)
         for line in result.stdout.split('\n'):
-            if ' : ' in line and any(g in line for g in ['pop rdi', 'pop rsi', 'pop rdx', 'jmp rsi', 'jmp rdi', 'jmp rax', 'ret']):
+            if ' : ' in line and any(g in line for g in ['pop rdi', 'pop rsi', 'pop rdx', 'pop rax', 'jmp rsi', 'jmp rdi', 'jmp rax', 'ret']):
                 parts = line.split(' : ')
                 if len(parts) == 2:
-                    addr = parts[0].strip()
-                    gadget = parts[1].strip()
-                    report["gadgets"].append({
-                        "address": addr,
-                        "instruction": gadget
-                    })
-        
-        # Ограничиваем до 50 гаджетов
+                    report["gadgets"].append({"address": parts[0].strip(), "instruction": parts[1].strip()})
         report["gadgets"] = report["gadgets"][:50]
         print(f"[+] Найдено {len(report['gadgets'])} гаджетов")
     except Exception as e:
         print(f"[!] Ошибка при поиске гаджетов: {e}")
+
+    # ==========================================================
+    # 5. УЛУЧШЕННЫЙ ДЕТЕКТОР УЯЗВИМОСТЕЙ
+    # ==========================================================
+    report["vulnerability_indicators"] = {
+        "malloc_calls": malloc_count,
+        "has_dangerous_input": has_dangerous_input,
+        "has_dangerous_execution": has_dangerous_execution,
+        "has_address_leak": has_address_leak,
+        "risk_level": "LOW"
+    }
+
+    # Логика определения риска (теперь гораздо точнее!)
+    if malloc_count >= 1 and has_dangerous_input and has_dangerous_execution:
+        report["vulnerability_indicators"]["risk_level"] = "HIGH (Potential Heap/Stack Buffer Overflow -> Command Injection)"
+    elif has_dangerous_input and not has_dangerous_execution:
+        report["vulnerability_indicators"]["risk_level"] = "MEDIUM (Potential Buffer Overflow, check for ROP/Canary)"
+    elif has_address_leak:
+        report["vulnerability_indicators"]["risk_level"] = "MEDIUM (Information Leak detected, check for PIE bypass)"
+
+    # ==========================================================
 
     with open(output_json, 'w', encoding='utf-8') as f:
         json.dump(report, f, indent=4)
