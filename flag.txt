@@ -1,1 +1,1 @@
-ROPE{a_placeholder_32byte_flag!}
+picoCTF{autopilot_heap_overflow_success}

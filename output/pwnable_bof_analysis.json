@@ -1,0 +1,11 @@
+{
+    "binary": "bof",
+    "arch": "x86_64",
+    "bits": "64",
+    "functions": [],
+    "dangerous_calls": [],
+    "interesting_strings": [],
+    "gadgets": [],
+    "safe_return_addresses": [],
+    "rop_targets": {}
+}

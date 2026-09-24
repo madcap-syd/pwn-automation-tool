@@ -1,0 +1,191 @@
+{
+    "binary": "vuln",
+    "arch": "x86_64",
+    "bits": "64",
+    "functions": [
+        {
+            "name": "sym.deregister_tm_clones",
+            "address": "0x11d0"
+        },
+        {
+            "name": "sym.register_tm_clones",
+            "address": "0x1200"
+        },
+        {
+            "name": "sym._fini",
+            "address": "0x142c"
+        },
+        {
+            "name": "sym.segfault_handler",
+            "address": "0x1289"
+        },
+        {
+            "name": "sym.win",
+            "address": "0x12aa"
+        },
+        {
+            "name": "main",
+            "address": "0x134c"
+        },
+        {
+            "name": "sym._init",
+            "address": "0x1000"
+        }
+    ],
+    "dangerous_calls": [
+        {
+            "caller": "main",
+            "callee": "printf",
+            "address": "0x13b2"
+        },
+        {
+            "caller": "main",
+            "callee": "printf",
+            "address": "0x13c6"
+        },
+        {
+            "caller": "main",
+            "callee": "printf",
+            "address": "0x13fc"
+        }
+    ],
+    "interesting_strings": [
+        {
+            "address": "0x2039",
+            "value": "flag.txt"
+        },
+        {
+            "address": "0x2054",
+            "value": "Address of main: %p\\n"
+        }
+    ],
+    "gadgets": [
+        {
+            "address": "0x00000000000011f3",
+            "instruction": "add byte ptr [rax], 0 ; add byte ptr [rax], al ; ret"
+        },
+        {
+            "address": "0x00000000000011f4",
+            "instruction": "add byte ptr [rax], al ; add byte ptr [rax], al ; ret"
+        },
+        {
+            "address": "0x0000000000001056",
+            "instruction": "add byte ptr [rax], al ; add cl, ch ; ret 0xffff"
+        },
+        {
+            "address": "0x0000000000001270",
+            "instruction": "add byte ptr [rax], al ; add dword ptr [rbp - 0x3d], ebx ; nop dword ptr [rax] ; ret"
+        },
+        {
+            "address": "0x00000000000011f6",
+            "instruction": "add byte ptr [rax], al ; ret"
+        },
+        {
+            "address": "0x0000000000001235",
+            "instruction": "add byte ptr [rax], r8b ; ret"
+        },
+        {
+            "address": "0x0000000000001271",
+            "instruction": "add byte ptr [rcx], al ; pop rbp ; ret"
+        },
+        {
+            "address": "0x0000000000001058",
+            "instruction": "add cl, ch ; ret 0xffff"
+        },
+        {
+            "address": "0x0000000000001272",
+            "instruction": "add dword ptr [rbp - 0x3d], ebx ; nop dword ptr [rax] ; ret"
+        },
+        {
+            "address": "0x0000000000001422",
+            "instruction": "add eax, 0xfffcf8e8 ; dec ecx ; ret"
+        },
+        {
+            "address": "0x0000000000001017",
+            "instruction": "add esp, 8 ; ret"
+        },
+        {
+            "address": "0x0000000000001016",
+            "instruction": "add rsp, 8 ; ret"
+        },
+        {
+            "address": "0x000000000000142f",
+            "instruction": "cli ; sub rsp, 8 ; add rsp, 8 ; ret"
+        },
+        {
+            "address": "0x0000000000001427",
+            "instruction": "dec ecx ; ret"
+        },
+        {
+            "address": "0x000000000000134a",
+            "instruction": "leave ; ret"
+        },
+        {
+            "address": "0x0000000000001231",
+            "instruction": "loopne 0x1299 ; nop dword ptr [rax + rax] ; ret"
+        },
+        {
+            "address": "0x000000000000126c",
+            "instruction": "mov byte ptr [rip + 0x2da5], 1 ; pop rbp ; ret"
+        },
+        {
+            "address": "0x000000000000126e",
+            "instruction": "movsd dword ptr [rdi], dword ptr [rsi] ; sub eax, 0x5d010000 ; ret"
+        },
+        {
+            "address": "0x0000000000001349",
+            "instruction": "nop ; leave ; ret"
+        },
+        {
+            "address": "0x0000000000001233",
+            "instruction": "nop dword ptr [rax + rax] ; ret"
+        },
+        {
+            "address": "0x00000000000011f1",
+            "instruction": "nop dword ptr [rax] ; ret"
+        },
+        {
+            "address": "0x0000000000001232",
+            "instruction": "nop word ptr [rax + rax] ; ret"
+        },
+        {
+            "address": "0x000000000000122f",
+            "instruction": "or bh, bh ; loopne 0x1299 ; nop dword ptr [rax + rax] ; ret"
+        },
+        {
+            "address": "0x0000000000001273",
+            "instruction": "pop rbp ; ret"
+        },
+        {
+            "address": "0x000000000000101a",
+            "instruction": "ret"
+        },
+        {
+            "address": "0x000000000000105a",
+            "instruction": "ret 0xffff"
+        },
+        {
+            "address": "0x0000000000001011",
+            "instruction": "sal byte ptr [rdx + rax - 1], 0xd0 ; add rsp, 8 ; ret"
+        },
+        {
+            "address": "0x000000000000126f",
+            "instruction": "sub eax, 0x5d010000 ; ret"
+        },
+        {
+            "address": "0x0000000000001431",
+            "instruction": "sub esp, 8 ; add rsp, 8 ; ret"
+        },
+        {
+            "address": "0x0000000000001430",
+            "instruction": "sub rsp, 8 ; add rsp, 8 ; ret"
+        }
+    ],
+    "safe_return_addresses": [
+        {
+            "name": "main",
+            "address": "0x134c"
+        }
+    ],
+    "rop_targets": {}
+}
