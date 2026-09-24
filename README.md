@@ -4,7 +4,8 @@
 
 ## 🚀 Возможности
 - ⚡ **Молниеносный анализ:** Интеграция Radare2 (headless) + ROPgadget для сверхбыстрого извлечения гаджетов, строк и функций.
-- 🧠 **Умная генерация эксплойтов:** Автопостроение ROP-цепочек (pop rdi, stack alignment) и ret2win через Jinja2-шаблоны на основе JSON-отчета.
+- 🧠 **Умный детектор уязвимостей (SAST):** Автоматически анализирует паттерны кода (например, `malloc` + `scanf` + `system`) и классифицирует уровень риска (LOW/MEDIUM/HIGH), предлагая конкретный вектор атаки (Heap Overflow, ROP, PIE Bypass) прямо в сгенерированном шаблоне эксплойта.
+- 🔗 **Автогенерация эксплойтов:** Умное построение ROP-цепочек (pop rdi, stack alignment) и ret2win через Jinja2-шаблоны на основе JSON-отчета.
 - 🛡️ **Анализ защит:** Автоматический checksec (PIE, Canary, NX, RELRO, Stripped).
 - 🔍 **Поиск уязвимостей:** Сканирование PLT/GOT на опасные функции (gets, printf, strcpy, system).
 - 📏 **Auto Offset Finder:** Автоматический расчет смещения до EIP/RIP с помощью cyclic pattern и GDB.
@@ -76,7 +77,7 @@ pwn-automation-tool/
 ├── client.py               # Python клиент для API
 ├── src/                    # Новые модули автоматизации
 │   ├── analyzers/
-│   │   └── r2_analyzer.py       # Анализ через Radare2 + ROPgadget
+│   │   └── r2_analyzer.py       # Анализ через Radare2 + ROPgadget + SAST детектор
 │   └── generators/
 │       └── exploit_generator.py # Генератор эксплойтов (Jinja2)
 ├── modules/
