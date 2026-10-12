@@ -1,0 +1,20 @@
+{
+  "binary": "horsetrack",
+  "arch": "x86_64",
+  "vulnerability_indicators": {
+    "risk_level": "Heap Tcache",
+    "has_address_leak": true,
+    "patterns": [
+      "malloc",
+      "free",
+      "UAF"
+    ]
+  },
+  "rop_targets": {
+    "free_got": 4210712,
+    "system": 4198544
+  },
+  "functions": [],
+  "interesting_strings": [],
+  "gadgets": []
+}

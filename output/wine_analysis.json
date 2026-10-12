@@ -1,0 +1,896 @@
+{
+    "binary": "vuln.exe",
+    "arch": "x86",
+    "bits": "32",
+    "functions": [
+        {
+            "name": "dbg.mainCRTStartup",
+            "address": "0x4013e0"
+        },
+        {
+            "name": "dbg.__mingw_invalidParameterHandler",
+            "address": "0x401000"
+        },
+        {
+            "name": "dbg.pre_c_init",
+            "address": "0x401010"
+        },
+        {
+            "name": "dbg.pre_cpp_init",
+            "address": "0x401110"
+        },
+        {
+            "name": "sym.___getmainargs",
+            "address": "0x407d50"
+        },
+        {
+            "name": "dbg.__tmainCRTStartup",
+            "address": "0x401150"
+        },
+        {
+            "name": "dbg.WinMainCRTStartup",
+            "address": "0x4013d0"
+        },
+        {
+            "name": "dbg.atexit",
+            "address": "0x4013f0"
+        },
+        {
+            "name": "sym.__onexit",
+            "address": "0x407da0"
+        },
+        {
+            "name": "sym.___gcc_register_frame",
+            "address": "0x401410"
+        },
+        {
+            "name": "sym.___gcc_deregister_frame",
+            "address": "0x4014b0"
+        },
+        {
+            "name": "sym._printf",
+            "address": "0x4014e0"
+        },
+        {
+            "name": "dbg.__mingw_vfprintf",
+            "address": "0x4025d0"
+        },
+        {
+            "name": "sym.__lock_file",
+            "address": "0x4076d0"
+        },
+        {
+            "name": "dbg.__mingw_pformat",
+            "address": "0x404340"
+        },
+        {
+            "name": "sym.__errno",
+            "address": "0x407d88"
+        },
+        {
+            "name": "sym._fputc",
+            "address": "0x407de8"
+        },
+        {
+            "name": "sym.___pformat_xint.isra.0",
+            "address": "0x402b30"
+        },
+        {
+            "name": "sym.___pformat_int.isra.0",
+            "address": "0x4030e0"
+        },
+        {
+            "name": "sym.___pformat_putc",
+            "address": "0x402710"
+        },
+        {
+            "name": "dbg.__pformat_putchars",
+            "address": "0x4028f0"
+        },
+        {
+            "name": "dbg.__pformat_float",
+            "address": "0x403ba0"
+        },
+        {
+            "name": "dbg.__pformat_gfloat",
+            "address": "0x403c70"
+        },
+        {
+            "name": "dbg.__pformat_efloat",
+            "address": "0x403b10"
+        },
+        {
+            "name": "dbg.__pformat_puts",
+            "address": "0x402a50"
+        },
+        {
+            "name": "dbg.strnlen",
+            "address": "0x407670"
+        },
+        {
+            "name": "sym._strlen",
+            "address": "0x407e48"
+        },
+        {
+            "name": "sym._strerror",
+            "address": "0x407e40"
+        },
+        {
+            "name": "sym.___pformat_emit_xfloat.isra.0",
+            "address": "0x403de0"
+        },
+        {
+            "name": "sym._localeconv",
+            "address": "0x407e08"
+        },
+        {
+            "name": "dbg.mbrtowc",
+            "address": "0x407b60"
+        },
+        {
+            "name": "dbg.___mb_cur_max_func",
+            "address": "0x407f60"
+        },
+        {
+            "name": "dbg.___lc_codepage_func",
+            "address": "0x407f50"
+        },
+        {
+            "name": "dbg.__mbrtowc_cp",
+            "address": "0x4079f0"
+        },
+        {
+            "name": "dbg.__pformat_wputchars",
+            "address": "0x402770"
+        },
+        {
+            "name": "dbg.wcsnlen",
+            "address": "0x4076a0"
+        },
+        {
+            "name": "dbg.__pformat_emit_inf_or_nan",
+            "address": "0x402aa0"
+        },
+        {
+            "name": "sym._wcslen",
+            "address": "0x407e60"
+        },
+        {
+            "name": "sym.__unlock_file",
+            "address": "0x407740"
+        },
+        {
+            "name": "sym._win",
+            "address": "0x40151c"
+        },
+        {
+            "name": "sym._fopen",
+            "address": "0x407dd8"
+        },
+        {
+            "name": "sym._exit",
+            "address": "0x407dc0"
+        },
+        {
+            "name": "sym._fgets",
+            "address": "0x407dd0"
+        },
+        {
+            "name": "sym._puts",
+            "address": "0x407e28"
+        },
+        {
+            "name": "sym._fflush",
+            "address": "0x407dc8"
+        },
+        {
+            "name": "sym._vuln",
+            "address": "0x401595"
+        },
+        {
+            "name": "sym._gets",
+            "address": "0x407e00"
+        },
+        {
+            "name": "sym._main",
+            "address": "0x4015bb"
+        },
+        {
+            "name": "dbg.__main",
+            "address": "0x4016b0"
+        },
+        {
+            "name": "sym._setvbuf",
+            "address": "0x407e30"
+        },
+        {
+            "name": "dbg.__do_global_dtors",
+            "address": "0x401610"
+        },
+        {
+            "name": "dbg.__do_global_ctors",
+            "address": "0x401650"
+        },
+        {
+            "name": "dbg._setargv",
+            "address": "0x4016d0"
+        },
+        {
+            "name": "dbg.__dyn_tls_dtor",
+            "address": "0x4016e0"
+        },
+        {
+            "name": "dbg.__mingw_TLScallback",
+            "address": "0x4020a0"
+        },
+        {
+            "name": "dbg.__dyn_tls_init@12",
+            "address": "0x401720"
+        },
+        {
+            "name": "dbg.__tlregdtor",
+            "address": "0x4017c0"
+        },
+        {
+            "name": "dbg._matherr",
+            "address": "0x4017d0"
+        },
+        {
+            "name": "dbg.__acrt_iob_func",
+            "address": "0x4077d0"
+        },
+        {
+            "name": "sym._fprintf",
+            "address": "0x407de0"
+        },
+        {
+            "name": "dbg._fpreset",
+            "address": "0x401850"
+        },
+        {
+            "name": "dbg.__report_error",
+            "address": "0x401860"
+        },
+        {
+            "name": "sym._fwrite",
+            "address": "0x407df8"
+        },
+        {
+            "name": "sym._vfprintf",
+            "address": "0x407e58"
+        },
+        {
+            "name": "sym._abort",
+            "address": "0x407db0"
+        },
+        {
+            "name": "dbg.mark_section_writable",
+            "address": "0x4018c0"
+        },
+        {
+            "name": "dbg._pei386_runtime_relocator",
+            "address": "0x401a20"
+        },
+        {
+            "name": "dbg.__mingw_raise_matherr",
+            "address": "0x401d10"
+        },
+        {
+            "name": "dbg.__mingw_setusermatherr",
+            "address": "0x401d60"
+        },
+        {
+            "name": "dbg._gnu_exception_handler@4",
+            "address": "0x401d80"
+        },
+        {
+            "name": "sym.___mingwthr_run_key_dtors.part.0",
+            "address": "0x401f10"
+        },
+        {
+            "name": "dbg.___w64_mingwthr_add_key_dtor",
+            "address": "0x401f90"
+        },
+        {
+            "name": "sym._calloc",
+            "address": "0x407db8"
+        },
+        {
+            "name": "dbg.___w64_mingwthr_remove_key_dtor",
+            "address": "0x402010"
+        },
+        {
+            "name": "sym._free",
+            "address": "0x407df0"
+        },
+        {
+            "name": "sym.__ValidateImageBase",
+            "address": "0x402190"
+        },
+        {
+            "name": "sym.__FindPESection",
+            "address": "0x4021c0"
+        },
+        {
+            "name": "dbg._FindPESectionByName",
+            "address": "0x402210"
+        },
+        {
+            "name": "dbg.__mingw_GetSectionForAddress",
+            "address": "0x4022c0"
+        },
+        {
+            "name": "dbg.__mingw_GetSectionCount",
+            "address": "0x402350"
+        },
+        {
+            "name": "dbg._FindPESectionExec",
+            "address": "0x402390"
+        },
+        {
+            "name": "dbg._GetPEImageBase",
+            "address": "0x402410"
+        },
+        {
+            "name": "dbg._IsNonwritableInCurrentImage",
+            "address": "0x402450"
+        },
+        {
+            "name": "dbg.__mingw_enum_import_library_names",
+            "address": "0x4024e0"
+        },
+        {
+            "name": "dbg.__pformat_cvt",
+            "address": "0x402620"
+        },
+        {
+            "name": "dbg.__pformat_emit_radix_point",
+            "address": "0x403510"
+        },
+        {
+            "name": "dbg.__pformat_emit_float",
+            "address": "0x403660"
+        },
+        {
+            "name": "dbg.__pformat_emit_efloat",
+            "address": "0x403a30"
+        },
+        {
+            "name": "sym.___rv_alloc_D2A",
+            "address": "0x404e90"
+        },
+        {
+            "name": "dbg.__nrv_alloc_D2A",
+            "address": "0x404ed0"
+        },
+        {
+            "name": "dbg.__freedtoa",
+            "address": "0x404f50"
+        },
+        {
+            "name": "dbg.__quorem_D2A",
+            "address": "0x404f80"
+        },
+        {
+            "name": "dbg.__gdtoa",
+            "address": "0x405140"
+        },
+        {
+            "name": "dbg.__rshift_D2A",
+            "address": "0x406800"
+        },
+        {
+            "name": "dbg.__trailz_D2A",
+            "address": "0x406920"
+        },
+        {
+            "name": "dbg.dtoa_lock",
+            "address": "0x406960"
+        },
+        {
+            "name": "sym._dtoa_lock_cleanup",
+            "address": "0x406a30"
+        },
+        {
+            "name": "sym.___Balloc_D2A",
+            "address": "0x406a80"
+        },
+        {
+            "name": "sym.___Bfree_D2A",
+            "address": "0x406b70"
+        },
+        {
+            "name": "dbg.__multadd_D2A",
+            "address": "0x406be0"
+        },
+        {
+            "name": "sym._memcpy",
+            "address": "0x407e18"
+        },
+        {
+            "name": "sym.___i2b_D2A",
+            "address": "0x406cc0"
+        },
+        {
+            "name": "dbg.__mult_D2A",
+            "address": "0x406d70"
+        },
+        {
+            "name": "dbg.__pow5mult_D2A",
+            "address": "0x406ee0"
+        },
+        {
+            "name": "dbg.__lshift_D2A",
+            "address": "0x407080"
+        },
+        {
+            "name": "sym.___cmp_D2A",
+            "address": "0x4071b0"
+        },
+        {
+            "name": "dbg.__diff_D2A",
+            "address": "0x407200"
+        },
+        {
+            "name": "dbg.__b2d_D2A",
+            "address": "0x407410"
+        },
+        {
+            "name": "dbg.__d2b_D2A",
+            "address": "0x407550"
+        },
+        {
+            "name": "dbg.__strcp_D2A",
+            "address": "0x407640"
+        },
+        {
+            "name": "dbg.mingw_get_invalid_parameter_handler",
+            "address": "0x4077b0"
+        },
+        {
+            "name": "dbg.mingw_set_invalid_parameter_handler",
+            "address": "0x4077c0"
+        },
+        {
+            "name": "dbg.__wcrtomb_cp",
+            "address": "0x4077f0"
+        },
+        {
+            "name": "dbg.wcrtomb",
+            "address": "0x407890"
+        },
+        {
+            "name": "dbg.wcsrtombs",
+            "address": "0x4078e0"
+        },
+        {
+            "name": "dbg.mbsrtowcs",
+            "address": "0x407bc0"
+        },
+        {
+            "name": "dbg.mbrlen",
+            "address": "0x407cf0"
+        },
+        {
+            "name": "dbg.msvcrt___lc_codepage_func",
+            "address": "0x407e70"
+        },
+        {
+            "name": "dbg.setlocale_codepage_hack",
+            "address": "0x407e80"
+        },
+        {
+            "name": "sym._setlocale",
+            "address": "0x407f78"
+        },
+        {
+            "name": "sym._strchr",
+            "address": "0x407f80"
+        },
+        {
+            "name": "sym._atoi",
+            "address": "0x407f70"
+        },
+        {
+            "name": "dbg.init_codepage_func",
+            "address": "0x407ed0"
+        },
+        {
+            "name": "sym._register_frame_ctor",
+            "address": "0x407f90"
+        },
+        {
+            "name": "sym.__cexit",
+            "address": "0x407d80"
+        },
+        {
+            "name": "sym.___setusermatherr",
+            "address": "0x407d70"
+        },
+        {
+            "name": "sym.___p__fmode",
+            "address": "0x407d60"
+        },
+        {
+            "name": "sym.__unlock",
+            "address": "0x407da8"
+        },
+        {
+            "name": "sym._memset",
+            "address": "0x407e20"
+        },
+        {
+            "name": "sym.___set_app_type",
+            "address": "0x407d68"
+        },
+        {
+            "name": "sym.__initterm",
+            "address": "0x407d90"
+        },
+        {
+            "name": "sym.__lock",
+            "address": "0x407d98"
+        },
+        {
+            "name": "sym._signal",
+            "address": "0x407e38"
+        },
+        {
+            "name": "sym._malloc",
+            "address": "0x407e10"
+        },
+        {
+            "name": "sym.__amsg_exit",
+            "address": "0x407d78"
+        },
+        {
+            "name": "sym._strncmp",
+            "address": "0x407e50"
+        },
+        {
+            "name": "sym.___p__commode",
+            "address": "0x407d58"
+        }
+    ],
+    "dangerous_calls": [
+        {
+            "caller": "global/import",
+            "callee": "sym._printf",
+            "address": "0x4014e0"
+        },
+        {
+            "caller": "global/import",
+            "callee": "dbg.__mingw_vfprintf",
+            "address": "0x4025d0"
+        },
+        {
+            "caller": "global/import",
+            "callee": "sym._fopen",
+            "address": "0x407dd8"
+        },
+        {
+            "caller": "global/import",
+            "callee": "sym._fgets",
+            "address": "0x407dd0"
+        },
+        {
+            "caller": "global/import",
+            "callee": "sym._gets",
+            "address": "0x407e00"
+        },
+        {
+            "caller": "global/import",
+            "callee": "sym._fprintf",
+            "address": "0x407de0"
+        },
+        {
+            "caller": "global/import",
+            "callee": "sym._vfprintf",
+            "address": "0x407e58"
+        },
+        {
+            "caller": "global/import",
+            "callee": "sym._free",
+            "address": "0x407df0"
+        },
+        {
+            "caller": "global/import",
+            "callee": "dbg.__mingw_GetSectionForAddress",
+            "address": "0x4022c0"
+        },
+        {
+            "caller": "global/import",
+            "callee": "dbg.__mingw_GetSectionCount",
+            "address": "0x402350"
+        },
+        {
+            "caller": "global/import",
+            "callee": "dbg.__freedtoa",
+            "address": "0x404f50"
+        },
+        {
+            "caller": "global/import",
+            "callee": "sym.___Bfree_D2A",
+            "address": "0x406b70"
+        },
+        {
+            "caller": "global/import",
+            "callee": "sym._malloc",
+            "address": "0x407e10"
+        }
+    ],
+    "interesting_strings": [
+        {
+            "address": "0x409046",
+            "value": "flag.txt"
+        },
+        {
+            "address": "0x409050",
+            "value": "flag.txt not found in current directory.\\n"
+        },
+        {
+            "address": "0x4090ac",
+            "value": "Unknown error"
+        },
+        {
+            "address": "0x4090bc",
+            "value": "_matherr(): %s in %s(%g, %g)  (retval=%g)\\n"
+        },
+        {
+            "address": "0x4090e8",
+            "value": "Argument domain error (DOMAIN)"
+        },
+        {
+            "address": "0x409124",
+            "value": "Overflow range error (OVERFLOW)"
+        },
+        {
+            "address": "0x4091fc",
+            "value": "Address %p has no image-section"
+        },
+        {
+            "address": "0x40921c",
+            "value": "VirtualQuery failed for %d bytes at address %p"
+        },
+        {
+            "address": "0x409250",
+            "value": "VirtualProtect failed with code 0x%x"
+        },
+        {
+            "address": "0x4092d8",
+            "value": "%d bit pseudo relocation at %p out of range, targeting %p, yielding the value %p.\\n"
+        }
+    ],
+    "gadgets": [
+        {
+            "address": "0x00402605",
+            "instruction": "aaa ; sbb eax, 0x34890000 ; and al, 0x89 ; ret"
+        },
+        {
+            "address": "0x004072c6",
+            "instruction": "aam 0x83 ; ret"
+        },
+        {
+            "address": "0x00402af8",
+            "instruction": "aam 0x83 ; ret 0x2903"
+        },
+        {
+            "address": "0x0040731c",
+            "instruction": "aam 0x89 ; ret"
+        },
+        {
+            "address": "0x00407157",
+            "instruction": "aam 0x89 ; retf"
+        },
+        {
+            "address": "0x004035cc",
+            "instruction": "aam 0x8d ; hlt ; pop ebx ; pop esi ; pop edi ; pop ebp ; ret"
+        },
+        {
+            "address": "0x00406837",
+            "instruction": "adc al, 0x5b ; pop esi ; pop edi ; pop ebp ; ret"
+        },
+        {
+            "address": "0x00406cfa",
+            "instruction": "adc al, 0xc9 ; ret"
+        },
+        {
+            "address": "0x00403c61",
+            "instruction": "adc al, byte ptr [eax] ; add byte ptr [ebx + 0x5e5b20c4], al ; pop ebp ; ret"
+        },
+        {
+            "address": "0x0040546c",
+            "instruction": "adc byte ptr [ecx], ch ; ret"
+        },
+        {
+            "address": "0x00407ac7",
+            "instruction": "adc byte ptr [ecx], dh ; ror byte ptr [ebp + 0x5e5bf865], 0x5d ; ret"
+        },
+        {
+            "address": "0x004014d5",
+            "instruction": "adc eax, 0x40d138 ; sub esp, 4 ; leave ; ret"
+        },
+        {
+            "address": "0x00403b5d",
+            "instruction": "adc eax, dword ptr [eax] ; add byte ptr [ebx + 0x5e5b20c4], al ; pop ebp ; ret"
+        },
+        {
+            "address": "0x00406bb0",
+            "instruction": "adc esi, dword ptr [ebp + ecx - 0x75] ; pop ebp ; cld ; leave ; ret"
+        },
+        {
+            "address": "0x00401637",
+            "instruction": "add al, 0x80 ; inc eax ; add byte ptr [ebp - 0x36168a40], al ; ret"
+        },
+        {
+            "address": "0x0040126c",
+            "instruction": "add al, 0x83 ; ret"
+        },
+        {
+            "address": "0x00406942",
+            "instruction": "add al, 0x83 ; ret 0x3920"
+        },
+        {
+            "address": "0x004051f4",
+            "instruction": "add al, 0x83 ; ret 0x8904"
+        },
+        {
+            "address": "0x00403ee2",
+            "instruction": "add al, 0x89 ; ret 0xc031"
+        },
+        {
+            "address": "0x00403ad3",
+            "instruction": "add al, 0x89 ; ret 0xe083"
+        },
+        {
+            "address": "0x00401ffb",
+            "instruction": "add al, 0x8b ; pop ebp ; cld ; leave ; ret"
+        },
+        {
+            "address": "0x00406a09",
+            "instruction": "add al, 0x8d ; clc ; pop ebx ; pop esi ; pop ebp ; ret"
+        },
+        {
+            "address": "0x00401f78",
+            "instruction": "add al, 0x8d ; hlt ; pop ebx ; pop esi ; pop edi ; pop ebp ; ret"
+        },
+        {
+            "address": "0x004014dc",
+            "instruction": "add al, 0xc9 ; ret"
+        },
+        {
+            "address": "0x00405eaf",
+            "instruction": "add al, 0xe8 ; retf"
+        },
+        {
+            "address": "0x00407a94",
+            "instruction": "add al, byte ptr [eax] ; add byte ptr [eax], al ; pop ebx ; pop esi ; pop ebp ; ret"
+        },
+        {
+            "address": "0x004031ca",
+            "instruction": "add al, byte ptr [ecx] ; ret 0xd889"
+        },
+        {
+            "address": "0x00401147",
+            "instruction": "add al, ch ; add ebp, dword ptr [eax + eax] ; leave ; ret"
+        },
+        {
+            "address": "0x0040778d",
+            "instruction": "add al, ch ; cmp eax, 0x29000000 ; ret"
+        },
+        {
+            "address": "0x004010e6",
+            "instruction": "add al, ch ; je 0x4010f6 ; add byte ptr [eax], al ; xor eax, eax ; leave ; ret"
+        },
+        {
+            "address": "0x00405372",
+            "instruction": "add bh, al ; inc ebp ; mov word ptr [eax], es ; add byte ptr [eax], al ; add byte ptr [ecx], ch ; ret 0x5589"
+        },
+        {
+            "address": "0x00406b2b",
+            "instruction": "add bl, dl ; loop 0x406ab2 ; ret 0x891b"
+        },
+        {
+            "address": "0x00407463",
+            "instruction": "add bl, dl ; loop 0x407490 ; iretd"
+        },
+        {
+            "address": "0x00402368",
+            "instruction": "add byte ptr [eax + 0x45], dl ; add byte ptr [eax], al ; je 0x402370 ; ret"
+        },
+        {
+            "address": "0x00402428",
+            "instruction": "add byte ptr [eax + 0x45], dl ; add byte ptr [eax], al ; je 0x402430 ; ret"
+        },
+        {
+            "address": "0x004025c6",
+            "instruction": "add byte ptr [eax + 0x59], bl ; ret"
+        },
+        {
+            "address": "0x00407733",
+            "instruction": "add byte ptr [eax + 0x5d8b0000], al ; cld ; leave ; ret"
+        },
+        {
+            "address": "0x00401715",
+            "instruction": "add byte ptr [eax + 1], bh ; leave ; ret 0xc"
+        },
+        {
+            "address": "0x0040693e",
+            "instruction": "add byte ptr [eax - 0x7cfb3f7d], dl ; ret 0x3920"
+        },
+        {
+            "address": "0x0040787c",
+            "instruction": "add byte ptr [eax - 1], bh ; leave ; ret"
+        },
+        {
+            "address": "0x00407734",
+            "instruction": "add byte ptr [eax], 0 ; mov ebx, dword ptr [ebp - 4] ; leave ; ret"
+        },
+        {
+            "address": "0x00401638",
+            "instruction": "add byte ptr [eax], 0x85 ; sal byte ptr [ebp - 0x17], 0xc9 ; ret"
+        },
+        {
+            "address": "0x00406d02",
+            "instruction": "add byte ptr [eax], 0x89 ; ret 0xea81"
+        },
+        {
+            "address": "0x00401095",
+            "instruction": "add byte ptr [eax], 1 ; je 0x4010e0 ; leave ; xor eax, eax ; ret"
+        },
+        {
+            "address": "0x0040778b",
+            "instruction": "add byte ptr [eax], al ; add al, ch ; cmp eax, 0x29000000 ; ret"
+        },
+        {
+            "address": "0x00406b29",
+            "instruction": "add byte ptr [eax], al ; add bl, dl ; loop 0x406ab2 ; ret 0x891b"
+        },
+        {
+            "address": "0x00407461",
+            "instruction": "add byte ptr [eax], al ; add bl, dl ; loop 0x407490 ; iretd"
+        },
+        {
+            "address": "0x0040693c",
+            "instruction": "add byte ptr [eax], al ; add byte ptr [eax - 0x7cfb3f7d], dl ; ret 0x3920"
+        },
+        {
+            "address": "0x0040787a",
+            "instruction": "add byte ptr [eax], al ; add byte ptr [eax - 1], bh ; leave ; ret"
+        },
+        {
+            "address": "0x004015fd",
+            "instruction": "add byte ptr [eax], al ; add byte ptr [eax], al ; leave ; ret"
+        }
+    ],
+    "safe_return_addresses": [
+        {
+            "name": "sym._exit",
+            "address": "0x407dc0"
+        }
+    ],
+    "rop_targets": {},
+    "vulnerability_indicators": {
+        "malloc_calls": 1,
+        "has_dangerous_input": true,
+        "has_dangerous_execution": false,
+        "has_fmtstr_func": true,
+        "has_file_operations": true,
+        "has_privilege_escalation": false,
+        "has_address_leak": true,
+        "has_stat_check": false,
+        "has_uid_check": false,
+        "has_file_open": true,
+        "risk_level": "HIGH (Potential Format String Vulnerability)"
+    },
+    "writable_addresses": {
+        ".data": "0x408000"
+    },
+    "binary_protections": {
+        "has_suid": false,
+        "has_pie": false,
+        "has_canary": false,
+        "has_nx": false,
+        "has_relro": false
+    }
+}

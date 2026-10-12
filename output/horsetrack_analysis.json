@@ -1,0 +1,365 @@
+{
+    "binary": "horsetrack",
+    "arch": "x86_64",
+    "bits": "64",
+    "functions": [
+        {
+            "name": "sym.imp.free",
+            "address": "0x401030"
+        },
+        {
+            "name": "sym.imp.puts",
+            "address": "0x401040"
+        },
+        {
+            "name": "sym.imp.fread",
+            "address": "0x401050"
+        },
+        {
+            "name": "sym.imp.fclose",
+            "address": "0x401060"
+        },
+        {
+            "name": "sym.imp.__stack_chk_fail",
+            "address": "0x401070"
+        },
+        {
+            "name": "sym.imp.setbuf",
+            "address": "0x401080"
+        },
+        {
+            "name": "sym.imp.system",
+            "address": "0x401090"
+        },
+        {
+            "name": "sym.imp.printf",
+            "address": "0x4010a0"
+        },
+        {
+            "name": "sym.imp.strnlen",
+            "address": "0x4010b0"
+        },
+        {
+            "name": "sym.imp.srand",
+            "address": "0x4010c0"
+        },
+        {
+            "name": "sym.imp.putc",
+            "address": "0x4010d0"
+        },
+        {
+            "name": "sym.imp.getchar",
+            "address": "0x4010e0"
+        },
+        {
+            "name": "sym.imp.malloc",
+            "address": "0x4010f0"
+        },
+        {
+            "name": "sym.imp.fopen",
+            "address": "0x401100"
+        },
+        {
+            "name": "sym.imp.__isoc99_scanf",
+            "address": "0x401110"
+        },
+        {
+            "name": "sym.imp.sprintf",
+            "address": "0x401120"
+        },
+        {
+            "name": "sym.imp.rand",
+            "address": "0x401130"
+        },
+        {
+            "name": "sym.sleep",
+            "address": "0x4012b3"
+        },
+        {
+            "name": "main",
+            "address": "0x401c0c"
+        }
+    ],
+    "dangerous_calls": [
+        {
+            "caller": "global/import",
+            "callee": "sym.imp.free",
+            "address": "0x401030"
+        },
+        {
+            "caller": "global/import",
+            "callee": "sym.imp.fread",
+            "address": "0x401050"
+        },
+        {
+            "caller": "global/import",
+            "callee": "sym.imp.system",
+            "address": "0x401090"
+        },
+        {
+            "caller": "global/import",
+            "callee": "sym.imp.printf",
+            "address": "0x4010a0"
+        },
+        {
+            "caller": "global/import",
+            "callee": "sym.imp.malloc",
+            "address": "0x4010f0"
+        },
+        {
+            "caller": "global/import",
+            "callee": "sym.imp.fopen",
+            "address": "0x401100"
+        },
+        {
+            "caller": "global/import",
+            "callee": "sym.imp.__isoc99_scanf",
+            "address": "0x401110"
+        },
+        {
+            "caller": "global/import",
+            "callee": "sym.imp.sprintf",
+            "address": "0x401120"
+        }
+    ],
+    "interesting_strings": [
+        {
+            "address": "0x402247",
+            "value": "WINNER: %s\\n\\n"
+        }
+    ],
+    "gadgets": [
+        {
+            "address": "0x000000000040170b",
+            "instruction": "adc dword ptr [rsi - 0x48], edi ; mov eax, 0 ; pop rbp ; ret"
+        },
+        {
+            "address": "0x0000000000401378",
+            "instruction": "adc dword ptr [rsi - 0x57], edi ; nop ; nop ; pop rbp ; ret"
+        },
+        {
+            "address": "0x0000000000401169",
+            "instruction": "add ah, dh ; nop dword ptr [rax + rax] ; ret"
+        },
+        {
+            "address": "0x00000000004017a6",
+            "instruction": "add al, 0x48 ; add eax, edx ; mov rax, qword ptr [rax] ; pop rbp ; ret"
+        },
+        {
+            "address": "0x0000000000401c6b",
+            "instruction": "add al, ch ; iretd"
+        },
+        {
+            "address": "0x0000000000401c77",
+            "instruction": "add al, ch ; ret"
+        },
+        {
+            "address": "0x000000000040119b",
+            "instruction": "add bh, bh ; loopne 0x401205 ; nop ; ret"
+        },
+        {
+            "address": "0x000000000040170f",
+            "instruction": "add byte ptr [rax], al ; add byte ptr [rax], al ; pop rbp ; ret"
+        },
+        {
+            "address": "0x000000000040199e",
+            "instruction": "add byte ptr [rax], al ; add byte ptr [rcx], ch ; ret 0xd089"
+        },
+        {
+            "address": "0x000000000040120a",
+            "instruction": "add byte ptr [rax], al ; add dword ptr [rbp - 0x3d], ebx ; nop ; ret"
+        },
+        {
+            "address": "0x0000000000401168",
+            "instruction": "add byte ptr [rax], al ; hlt ; nop dword ptr [rax + rax] ; ret"
+        },
+        {
+            "address": "0x0000000000401711",
+            "instruction": "add byte ptr [rax], al ; pop rbp ; ret"
+        },
+        {
+            "address": "0x000000000040116e",
+            "instruction": "add byte ptr [rax], al ; ret"
+        },
+        {
+            "address": "0x000000000040116d",
+            "instruction": "add byte ptr [rax], r8b ; ret"
+        },
+        {
+            "address": "0x0000000000401b43",
+            "instruction": "add byte ptr [rbp + rax - 0x18], dh ; and eax, 0xc9fffff5 ; ret"
+        },
+        {
+            "address": "0x000000000040120b",
+            "instruction": "add byte ptr [rcx], al ; pop rbp ; ret"
+        },
+        {
+            "address": "0x00000000004019a0",
+            "instruction": "add byte ptr [rcx], ch ; ret 0xd089"
+        },
+        {
+            "address": "0x0000000000401209",
+            "instruction": "add byte ptr cs:[rax], al ; add dword ptr [rbp - 0x3d], ebx ; nop ; ret"
+        },
+        {
+            "address": "0x0000000000401167",
+            "instruction": "add byte ptr cs:[rax], al ; hlt ; nop dword ptr [rax + rax] ; ret"
+        },
+        {
+            "address": "0x000000000040119a",
+            "instruction": "add dil, dil ; loopne 0x401205 ; nop ; ret"
+        },
+        {
+            "address": "0x000000000040120c",
+            "instruction": "add dword ptr [rbp - 0x3d], ebx ; nop ; ret"
+        },
+        {
+            "address": "0x0000000000401207",
+            "instruction": "add eax, 0x2edb ; add dword ptr [rbp - 0x3d], ebx ; nop ; ret"
+        },
+        {
+            "address": "0x0000000000401e41",
+            "instruction": "add eax, 0xfff229e8 ; dec ecx ; ret"
+        },
+        {
+            "address": "0x0000000000401c04",
+            "instruction": "add eax, 0xfff466e8 ; dec ecx ; ret"
+        },
+        {
+            "address": "0x0000000000401b45",
+            "instruction": "add eax, 0xfff525e8 ; dec ecx ; ret"
+        },
+        {
+            "address": "0x0000000000401658",
+            "instruction": "add eax, 0xfffa12e8 ; dec ecx ; ret"
+        },
+        {
+            "address": "0x0000000000401307",
+            "instruction": "add eax, 0xfffd63e8 ; dec ecx ; ret"
+        },
+        {
+            "address": "0x00000000004017a8",
+            "instruction": "add eax, edx ; mov rax, qword ptr [rax] ; pop rbp ; ret"
+        },
+        {
+            "address": "0x000000000040154b",
+            "instruction": "add esp, 0x28 ; pop rbx ; pop rbp ; ret"
+        },
+        {
+            "address": "0x0000000000401013",
+            "instruction": "add esp, 8 ; ret"
+        },
+        {
+            "address": "0x00000000004017a7",
+            "instruction": "add rax, rdx ; mov rax, qword ptr [rax] ; pop rbp ; ret"
+        },
+        {
+            "address": "0x000000000040154a",
+            "instruction": "add rsp, 0x28 ; pop rbx ; pop rbp ; ret"
+        },
+        {
+            "address": "0x0000000000401012",
+            "instruction": "add rsp, 8 ; ret"
+        },
+        {
+            "address": "0x0000000000401b47",
+            "instruction": "and eax, 0xc9fffff5 ; ret"
+        },
+        {
+            "address": "0x0000000000401377",
+            "instruction": "cld ; adc dword ptr [rsi - 0x57], edi ; nop ; nop ; pop rbp ; ret"
+        },
+        {
+            "address": "0x0000000000401375",
+            "instruction": "cmp dword ptr [rbp - 4], 0x11 ; jle 0x401324 ; nop ; nop ; pop rbp ; ret"
+        },
+        {
+            "address": "0x000000000040130c",
+            "instruction": "dec ecx ; ret"
+        },
+        {
+            "address": "0x0000000000401e94",
+            "instruction": "fisttp word ptr [rax - 0x7d] ; ret"
+        },
+        {
+            "address": "0x0000000000401208",
+            "instruction": "fld xword ptr [rsi] ; add byte ptr [rax], al ; add dword ptr [rbp - 0x3d], ebx ; nop ; ret"
+        },
+        {
+            "address": "0x000000000040116a",
+            "instruction": "hlt ; nop dword ptr [rax + rax] ; ret"
+        },
+        {
+            "address": "0x00000000004019ed",
+            "instruction": "iretd"
+        },
+        {
+            "address": "0x0000000000401376",
+            "instruction": "jge 0x401374 ; adc dword ptr [rsi - 0x57], edi ; nop ; nop ; pop rbp ; ret"
+        },
+        {
+            "address": "0x0000000000401379",
+            "instruction": "jle 0x401324 ; nop ; nop ; pop rbp ; ret"
+        },
+        {
+            "address": "0x000000000040170c",
+            "instruction": "jle 0x4016c6 ; mov eax, 0 ; pop rbp ; ret"
+        },
+        {
+            "address": "0x000000000040184a",
+            "instruction": "jle 0x4017c8 ; nop ; nop ; leave ; ret"
+        },
+        {
+            "address": "0x00000000004012b1",
+            "instruction": "leave ; ret"
+        },
+        {
+            "address": "0x00000000004017a5",
+            "instruction": "loop 0x4017ab ; add rax, rdx ; mov rax, qword ptr [rax] ; pop rbp ; ret"
+        },
+        {
+            "address": "0x000000000040119d",
+            "instruction": "loopne 0x401205 ; nop ; ret"
+        },
+        {
+            "address": "0x0000000000401198",
+            "instruction": "mov al, 0x40 ; add dil, dil ; loopne 0x401205 ; nop ; ret"
+        },
+        {
+            "address": "0x0000000000401206",
+            "instruction": "mov byte ptr [rip + 0x2edb], 1 ; pop rbp ; ret"
+        }
+    ],
+    "safe_return_addresses": [
+        {
+            "name": "main",
+            "address": "0x401c0c"
+        }
+    ],
+    "rop_targets": {
+        "system": "0x401090"
+    },
+    "vulnerability_indicators": {
+        "malloc_calls": 1,
+        "has_dangerous_input": true,
+        "has_dangerous_execution": true,
+        "has_fmtstr_func": true,
+        "has_file_operations": true,
+        "has_privilege_escalation": false,
+        "has_address_leak": false,
+        "has_stat_check": false,
+        "has_uid_check": false,
+        "has_file_open": true,
+        "risk_level": "HIGH (Potential Format String Vulnerability)"
+    },
+    "writable_addresses": {
+        ".data": "0x4040a0"
+    },
+    "binary_protections": {
+        "has_suid": false,
+        "has_pie": false,
+        "has_canary": false,
+        "has_nx": false,
+        "has_relro": false
+    }
+}

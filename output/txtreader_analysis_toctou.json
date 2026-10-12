@@ -1,0 +1,439 @@
+{
+    "binary": "txtreader",
+    "arch": "x86_64",
+    "bits": "64",
+    "functions": [
+        {
+            "name": "sym.imp.strlen",
+            "address": "0x2210"
+        },
+        {
+            "name": "sym.imp.getuid",
+            "address": "0x2220"
+        },
+        {
+            "name": "sym.imp.stat",
+            "address": "0x2290"
+        },
+        {
+            "name": "sym.imp.__stack_chk_fail",
+            "address": "0x22f0"
+        },
+        {
+            "name": "sym.imp._Unwind_Resume",
+            "address": "0x2350"
+        },
+        {
+            "name": "method.void_std::__cxx11::basic_string_char__std::char_traits_char___std::allocator_char___._M_construct_char_const__char_const__char_const__std::forward_iterator_tag_",
+            "address": "0x29c0"
+        },
+        {
+            "name": "sym.deregister_tm_clones",
+            "address": "0x23b0"
+        },
+        {
+            "name": "sym.register_tm_clones",
+            "address": "0x23e0"
+        },
+        {
+            "name": "method.std::__new_allocator_char_.___new_allocator__",
+            "address": "0x2964"
+        },
+        {
+            "name": "main",
+            "address": "0x2469"
+        },
+        {
+            "name": "method.std::__cxx11::basic_string_char__std::char_traits_char___std::allocator_char___._M_construct_char_const__char_const__char_const__std::forward_iterator_tag_::_Guard::__Guard__",
+            "address": "0x2992"
+        },
+        {
+            "name": "sym.imp.std::__cxx11::basic_string_char__std::char_traits_char___std::allocator_char___::_M_dispose__",
+            "address": "0x2300"
+        },
+        {
+            "name": "method.std::__cxx11::basic_string_char__std::char_traits_char___std::allocator_char___._M_construct_char_const__char_const__char_const__std::forward_iterator_tag_::_Guard::_Guard_std::__cxx11::basic_string_char__std::char_traits_char___std::allocator_char____",
+            "address": "0x2974"
+        },
+        {
+            "name": "sym._fini",
+            "address": "0x2adc"
+        },
+        {
+            "name": "method.__gnu_cxx::char_traits_char_.eq_char_const__char_const_",
+            "address": "0x293e"
+        },
+        {
+            "name": "method.std.__is_constant_evaluated__",
+            "address": "0x27ba"
+        },
+        {
+            "name": "method.std::__cxx11::basic_string_char__std::char_traits_char___std::allocator_char___::_Alloc_hider.__Alloc_hider__",
+            "address": "0x286e"
+        },
+        {
+            "name": "method.__gnu_cxx::char_traits_char_.length_char_const_",
+            "address": "0x2800"
+        },
+        {
+            "name": "sym._init",
+            "address": "0x2000"
+        },
+        {
+            "name": "method.std::__cxx11::basic_string_char__std::char_traits_char___std::allocator_char___::basic_string_std.allocator_char____char_const__std::allocator_char__const_",
+            "address": "0x2896"
+        },
+        {
+            "name": "method.std::char_traits_char_.length_char_const_",
+            "address": "0x27c9"
+        },
+        {
+            "name": "method.std::basic_istream_char__std::char_traits_char____std::getline_char__std::char_traits_char___std.allocator_char____std::basic_istream_char__std::char_traits_char_____std::__cxx11::basic_string_char__std::char_traits_char___std::allocator_char____",
+            "address": "0x21e0"
+        },
+        {
+            "name": "sym.imp.std::basic_ifstream_char__std::char_traits_char___::_basic_ifstream__",
+            "address": "0x21f0"
+        },
+        {
+            "name": "sym.imp.std::__cxx11::basic_string_char__std::char_traits_char___std::allocator_char___::c_str___const",
+            "address": "0x2200"
+        },
+        {
+            "name": "sym.imp.std::__cxx11::basic_string_char__std::char_traits_char___std::allocator_char___::_basic_string__",
+            "address": "0x2230"
+        },
+        {
+            "name": "sym.imp.std::__cxx11::basic_string_char__std::char_traits_char___std::allocator_char___::_M_set_length_unsigned_long_",
+            "address": "0x2240"
+        },
+        {
+            "name": "sym.imp.std::__throw_logic_error_char_const_",
+            "address": "0x2250"
+        },
+        {
+            "name": "sym.imp.std::__cxx11::basic_string_char__std::char_traits_char___std::allocator_char___::_M_local_data__",
+            "address": "0x2260"
+        },
+        {
+            "name": "sym.imp.std::__cxx11::basic_string_char__std::char_traits_char___std::allocator_char___::_M_data_char_",
+            "address": "0x2270"
+        },
+        {
+            "name": "method.std::basic_ostream_char__std::char_traits_char____std::operator____char__std::char_traits_char___std.allocator_char____std::basic_ostream_char__std::char_traits_char_____std::__cxx11::basic_string_char__std::char_traits_char___std::allocator_char____const_",
+            "address": "0x2280"
+        },
+        {
+            "name": "method.std::basic_ostream_char__std::char_traits_char____std::operator____std.char_traits_char____std::basic_ostream_char__std::char_traits_char_____char_const_",
+            "address": "0x22a0"
+        },
+        {
+            "name": "sym.imp.std::ostream::operator___std::ostream____std::ostream__",
+            "address": "0x22b0"
+        },
+        {
+            "name": "method.std::__cxx11::basic_string_char__std::char_traits_char___std::allocator_char___::_Alloc_hider._Alloc_hider_char__std::allocator_char__const_",
+            "address": "0x22c0"
+        },
+        {
+            "name": "sym.imp.std::__cxx11::basic_string_char__std::char_traits_char___std::allocator_char___::_M_data___const",
+            "address": "0x22d0"
+        },
+        {
+            "name": "sym.imp.std::__cxx11::basic_string_char__std::char_traits_char___std::allocator_char___::_S_copy_chars_char__char_const__char_const_",
+            "address": "0x22e0"
+        },
+        {
+            "name": "sym.imp.std::basic_ios_char__std::char_traits_char___::operator_bool___const",
+            "address": "0x2310"
+        },
+        {
+            "name": "sym.imp.std::__cxx11::basic_string_char__std::char_traits_char___std::allocator_char___::basic_string__",
+            "address": "0x2320"
+        },
+        {
+            "name": "sym.imp.std::basic_ifstream_char__std::char_traits_char___::is_open__",
+            "address": "0x2330"
+        },
+        {
+            "name": "method.std::basic_ifstream_char__std::char_traits_char___.basic_ifstream_std::__cxx11::basic_string_char__std::char_traits_char___std::allocator_char____const__std::_Ios_Openmode_",
+            "address": "0x2340"
+        },
+        {
+            "name": "sym.imp.std::__cxx11::basic_string_char__std::char_traits_char___std::allocator_char___::_M_create_unsigned_long__unsigned_long_",
+            "address": "0x2360"
+        },
+        {
+            "name": "sym.imp.std::__cxx11::basic_string_char__std::char_traits_char___std::allocator_char___::_M_capacity_unsigned_long_",
+            "address": "0x2370"
+        }
+    ],
+    "dangerous_calls": [
+        {
+            "caller": "global/import",
+            "callee": "sym.imp.getuid",
+            "address": "0x2220"
+        },
+        {
+            "caller": "global/import",
+            "callee": "sym.imp.stat",
+            "address": "0x2290"
+        },
+        {
+            "caller": "global/import",
+            "callee": "sym.imp.std::basic_ifstream_char__std::char_traits_char___::is_open__",
+            "address": "0x2330"
+        },
+        {
+            "caller": "global/import",
+            "callee": "method.std::basic_ifstream_char__std::char_traits_char___.basic_ifstream_std::__cxx11::basic_string_char__std::char_traits_char___std::allocator_char____const__std::_Ios_Openmode_",
+            "address": "0x2340"
+        }
+    ],
+    "interesting_strings": [
+        {
+            "address": "0x3020",
+            "value": "Error: Could not retrieve file information"
+        },
+        {
+            "address": "0x3050",
+            "value": "Error: you don't own this file"
+        },
+        {
+            "address": "0x306f",
+            "value": "Error: Could not open file"
+        }
+    ],
+    "gadgets": [
+        {
+            "address": "0x00000000000023d3",
+            "instruction": "add byte ptr [rax], 0 ; add byte ptr [rax], al ; ret"
+        },
+        {
+            "address": "0x00000000000027c3",
+            "instruction": "add byte ptr [rax], al ; add byte ptr [rax], al ; pop rbp ; ret"
+        },
+        {
+            "address": "0x00000000000023d4",
+            "instruction": "add byte ptr [rax], al ; add byte ptr [rax], al ; ret"
+        },
+        {
+            "address": "0x0000000000002156",
+            "instruction": "add byte ptr [rax], al ; add cl, ch ; ret 0xfffe"
+        },
+        {
+            "address": "0x0000000000002056",
+            "instruction": "add byte ptr [rax], al ; add cl, ch ; ret 0xffff"
+        },
+        {
+            "address": "0x0000000000002609",
+            "instruction": "add byte ptr [rax], al ; add cl, ch ; retf"
+        },
+        {
+            "address": "0x0000000000002450",
+            "instruction": "add byte ptr [rax], al ; add dword ptr [rbp - 0x3d], ebx ; nop dword ptr [rax] ; ret"
+        },
+        {
+            "address": "0x0000000000002890",
+            "instruction": "add byte ptr [rax], al ; nop ; nop ; leave ; ret"
+        },
+        {
+            "address": "0x00000000000027c5",
+            "instruction": "add byte ptr [rax], al ; pop rbp ; ret"
+        },
+        {
+            "address": "0x00000000000023d6",
+            "instruction": "add byte ptr [rax], al ; ret"
+        },
+        {
+            "address": "0x000000000000295b",
+            "instruction": "add byte ptr [rax], bh ; ret 0x940f"
+        },
+        {
+            "address": "0x0000000000002415",
+            "instruction": "add byte ptr [rax], r8b ; ret"
+        },
+        {
+            "address": "0x0000000000002451",
+            "instruction": "add byte ptr [rcx], al ; pop rbp ; ret"
+        },
+        {
+            "address": "0x000000000000244f",
+            "instruction": "add byte ptr cs:[rax], al ; add dword ptr [rbp - 0x3d], ebx ; nop dword ptr [rax] ; ret"
+        },
+        {
+            "address": "0x0000000000002158",
+            "instruction": "add cl, ch ; ret 0xfffe"
+        },
+        {
+            "address": "0x0000000000002058",
+            "instruction": "add cl, ch ; ret 0xffff"
+        },
+        {
+            "address": "0x000000000000260b",
+            "instruction": "add cl, ch ; retf"
+        },
+        {
+            "address": "0x0000000000002452",
+            "instruction": "add dword ptr [rbp - 0x3d], ebx ; nop dword ptr [rax] ; ret"
+        },
+        {
+            "address": "0x0000000000002ad1",
+            "instruction": "add eax, 0xfff819e8 ; dec ecx ; ret"
+        },
+        {
+            "address": "0x0000000000002865",
+            "instruction": "add eax, 0xfffa85e8 ; dec ecx ; ret"
+        },
+        {
+            "address": "0x0000000000002017",
+            "instruction": "add esp, 8 ; ret"
+        },
+        {
+            "address": "0x0000000000002016",
+            "instruction": "add rsp, 8 ; ret"
+        },
+        {
+            "address": "0x00000000000027b7",
+            "instruction": "clc ; leave ; ret"
+        },
+        {
+            "address": "0x000000000000296f",
+            "instruction": "clc ; nop ; pop rbp ; ret"
+        },
+        {
+            "address": "0x0000000000002adf",
+            "instruction": "cli ; sub rsp, 8 ; add rsp, 8 ; ret"
+        },
+        {
+            "address": "0x000000000000295c",
+            "instruction": "cmp dl, al ; sete al ; pop rbp ; ret"
+        },
+        {
+            "address": "0x00000000000027b3",
+            "instruction": "dec dword ptr [rax - 0x75] ; pop rbp ; clc ; leave ; ret"
+        },
+        {
+            "address": "0x00000000000024b6",
+            "instruction": "dec dword ptr [rax - 0x77] ; ret 0x8b48"
+        },
+        {
+            "address": "0x00000000000024ce",
+            "instruction": "dec dword ptr [rax - 0x77] ; ret 0x8d48"
+        },
+        {
+            "address": "0x000000000000286a",
+            "instruction": "dec ecx ; ret"
+        },
+        {
+            "address": "0x000000000000296b",
+            "instruction": "in eax, 0x48 ; mov dword ptr [rbp - 8], edi ; nop ; pop rbp ; ret"
+        },
+        {
+            "address": "0x00000000000027c1",
+            "instruction": "in eax, 0xb8 ; add byte ptr [rax], al ; add byte ptr [rax], al ; pop rbp ; ret"
+        },
+        {
+            "address": "0x0000000000002a96",
+            "instruction": "iretd"
+        },
+        {
+            "address": "0x000000000000296e",
+            "instruction": "jge 0x2968 ; nop ; pop rbp ; ret"
+        },
+        {
+            "address": "0x00000000000027b8",
+            "instruction": "leave ; ret"
+        },
+        {
+            "address": "0x0000000000002411",
+            "instruction": "loopne 0x2479 ; nop dword ptr [rax + rax] ; ret"
+        },
+        {
+            "address": "0x000000000000244c",
+            "instruction": "mov byte ptr [rip + 0x2e1d], 1 ; pop rbp ; ret"
+        },
+        {
+            "address": "0x000000000000295a",
+            "instruction": "mov dh, 0 ; cmp dl, al ; sete al ; pop rbp ; ret"
+        },
+        {
+            "address": "0x000000000000298d",
+            "instruction": "mov dword ptr [rax], edx ; nop ; pop rbp ; ret"
+        },
+        {
+            "address": "0x000000000000296d",
+            "instruction": "mov dword ptr [rbp - 8], edi ; nop ; pop rbp ; ret"
+        },
+        {
+            "address": "0x00000000000027c2",
+            "instruction": "mov eax, 0 ; pop rbp ; ret"
+        },
+        {
+            "address": "0x00000000000027c0",
+            "instruction": "mov ebp, esp ; mov eax, 0 ; pop rbp ; ret"
+        },
+        {
+            "address": "0x000000000000296a",
+            "instruction": "mov ebp, esp ; mov qword ptr [rbp - 8], rdi ; nop ; pop rbp ; ret"
+        },
+        {
+            "address": "0x00000000000027b5",
+            "instruction": "mov ebx, dword ptr [rbp - 8] ; leave ; ret"
+        },
+        {
+            "address": "0x0000000000002989",
+            "instruction": "mov edx, dword ptr [rbp - 0x10] ; mov qword ptr [rax], rdx ; nop ; pop rbp ; ret"
+        },
+        {
+            "address": "0x000000000000298c",
+            "instruction": "mov qword ptr [rax], rdx ; nop ; pop rbp ; ret"
+        },
+        {
+            "address": "0x000000000000296c",
+            "instruction": "mov qword ptr [rbp - 8], rdi ; nop ; pop rbp ; ret"
+        },
+        {
+            "address": "0x00000000000027bf",
+            "instruction": "mov rbp, rsp ; mov eax, 0 ; pop rbp ; ret"
+        },
+        {
+            "address": "0x0000000000002969",
+            "instruction": "mov rbp, rsp ; mov qword ptr [rbp - 8], rdi ; nop ; pop rbp ; ret"
+        },
+        {
+            "address": "0x00000000000027b4",
+            "instruction": "mov rbx, qword ptr [rbp - 8] ; leave ; ret"
+        }
+    ],
+    "safe_return_addresses": [
+        {
+            "name": "main",
+            "address": "0x2469"
+        }
+    ],
+    "rop_targets": {},
+    "vulnerability_indicators": {
+        "malloc_calls": 0,
+        "has_dangerous_input": false,
+        "has_dangerous_execution": false,
+        "has_fmtstr_func": false,
+        "has_file_operations": true,
+        "has_privilege_escalation": true,
+        "has_address_leak": false,
+        "has_stat_check": true,
+        "has_uid_check": true,
+        "has_file_open": true,
+        "risk_level": "HIGH (Potential TOCTOU / Race Condition Vulnerability)"
+    },
+    "writable_addresses": {
+        ".data": "0x5000"
+    },
+    "binary_protections": {
+        "has_suid": false,
+        "has_pie": false,
+        "has_canary": false,
+        "has_nx": false,
+        "has_relro": false
+    }
+}

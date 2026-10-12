@@ -1,0 +1,340 @@
+{
+    "binary": "heap_havoc",
+    "arch": "x86",
+    "bits": "32",
+    "functions": [
+        {
+            "name": "sym.imp.__libc_start_main",
+            "address": "0x8049040"
+        },
+        {
+            "name": "sym.imp.printf",
+            "address": "0x8049050"
+        },
+        {
+            "name": "sym.imp.fflush",
+            "address": "0x8049060"
+        },
+        {
+            "name": "sym.imp.fgets",
+            "address": "0x8049070"
+        },
+        {
+            "name": "sym.imp.fclose",
+            "address": "0x8049080"
+        },
+        {
+            "name": "sym.imp.perror",
+            "address": "0x8049090"
+        },
+        {
+            "name": "sym.imp.strcpy",
+            "address": "0x80490a0"
+        },
+        {
+            "name": "sym.imp.malloc",
+            "address": "0x80490b0"
+        },
+        {
+            "name": "sym.imp.puts",
+            "address": "0x80490c0"
+        },
+        {
+            "name": "sym.imp.exit",
+            "address": "0x80490d0"
+        },
+        {
+            "name": "sym.imp.fopen",
+            "address": "0x80490e0"
+        },
+        {
+            "name": "sym.deregister_tm_clones",
+            "address": "0x8049150"
+        },
+        {
+            "name": "sym.register_tm_clones",
+            "address": "0x8049190"
+        },
+        {
+            "name": "sym.__x86.get_pc_thunk.bx",
+            "address": "0x8049140"
+        },
+        {
+            "name": "sym._fini",
+            "address": "0x8049428"
+        },
+        {
+            "name": "sym._dl_relocate_static_pie",
+            "address": "0x8049130"
+        },
+        {
+            "name": "main",
+            "address": "0x80492b8"
+        },
+        {
+            "name": "sym.winner",
+            "address": "0x8049206"
+        },
+        {
+            "name": "sym._init",
+            "address": "0x8049000"
+        }
+    ],
+    "dangerous_calls": [
+        {
+            "caller": "global/import",
+            "callee": "sym.imp.printf",
+            "address": "0x8049050"
+        },
+        {
+            "caller": "global/import",
+            "callee": "sym.imp.fgets",
+            "address": "0x8049070"
+        },
+        {
+            "caller": "global/import",
+            "callee": "sym.imp.strcpy",
+            "address": "0x80490a0"
+        },
+        {
+            "caller": "global/import",
+            "callee": "sym.imp.malloc",
+            "address": "0x80490b0"
+        }
+    ],
+    "interesting_strings": [
+        {
+            "address": "0x804a00a",
+            "value": "flag.txt"
+        },
+        {
+            "address": "0x804a013",
+            "value": "Error opening flag.txt"
+        },
+        {
+            "address": "0x804a02a",
+            "value": "FLAG: %s\\n"
+        },
+        {
+            "address": "0x804a034",
+            "value": "Error reading flag"
+        }
+    ],
+    "gadgets": [
+        {
+            "address": "0x080492b1",
+            "instruction": "adc byte ptr [eax - 0x3603a275], dl ; ret"
+        },
+        {
+            "address": "0x08049174",
+            "instruction": "adc cl, cl ; ret"
+        },
+        {
+            "address": "0x080491ec",
+            "instruction": "add al, 8 ; add ecx, ecx ; ret"
+        },
+        {
+            "address": "0x0804917a",
+            "instruction": "add byte ptr [eax], al ; add byte ptr [eax], al ; nop ; ret"
+        },
+        {
+            "address": "0x080491f4",
+            "instruction": "add byte ptr [eax], al ; add byte ptr [eax], al ; ret"
+        },
+        {
+            "address": "0x0804917b",
+            "instruction": "add byte ptr [eax], al ; add byte ptr [esi - 0x70], ah ; ret"
+        },
+        {
+            "address": "0x08049439",
+            "instruction": "add byte ptr [eax], al ; add esp, 8 ; pop ebx ; ret"
+        },
+        {
+            "address": "0x0804917c",
+            "instruction": "add byte ptr [eax], al ; nop ; ret"
+        },
+        {
+            "address": "0x080491f6",
+            "instruction": "add byte ptr [eax], al ; ret"
+        },
+        {
+            "address": "0x0804917d",
+            "instruction": "add byte ptr [esi - 0x70], ah ; ret"
+        },
+        {
+            "address": "0x08049179",
+            "instruction": "add byte ptr es:[eax], al ; add byte ptr [eax], al ; nop ; ret"
+        },
+        {
+            "address": "0x080491f3",
+            "instruction": "add byte ptr es:[eax], al ; add byte ptr [eax], al ; ret"
+        },
+        {
+            "address": "0x080491e9",
+            "instruction": "add eax, 0x804c040 ; add ecx, ecx ; ret"
+        },
+        {
+            "address": "0x080491ee",
+            "instruction": "add ecx, ecx ; ret"
+        },
+        {
+            "address": "0x08049172",
+            "instruction": "add esp, 0x10 ; leave ; ret"
+        },
+        {
+            "address": "0x080492af",
+            "instruction": "add esp, 0x10 ; nop ; mov ebx, dword ptr [ebp - 4] ; leave ; ret"
+        },
+        {
+            "address": "0x0804901f",
+            "instruction": "add esp, 8 ; pop ebx ; ret"
+        },
+        {
+            "address": "0x080492b5",
+            "instruction": "cld ; leave ; ret"
+        },
+        {
+            "address": "0x08049423",
+            "instruction": "cld ; ret"
+        },
+        {
+            "address": "0x08049130",
+            "instruction": "endbr32 ; ret"
+        },
+        {
+            "address": "0x0804911c",
+            "instruction": "hlt ; mov ebx, dword ptr [esp] ; ret"
+        },
+        {
+            "address": "0x0804941c",
+            "instruction": "hlt ; pop ecx ; pop ebx ; pop esi ; pop ebp ; lea esp, [ecx - 4] ; ret"
+        },
+        {
+            "address": "0x080492ae",
+            "instruction": "inc dword ptr [ebx - 0x746fef3c] ; pop ebp ; cld ; leave ; ret"
+        },
+        {
+            "address": "0x08049196",
+            "instruction": "inc eax ; rol byte ptr [eax + ecx], 0x89 ; ret 0xe8c1"
+        },
+        {
+            "address": "0x080491ea",
+            "instruction": "inc eax ; rol byte ptr [eax + ecx], 1 ; leave ; ret"
+        },
+        {
+            "address": "0x080491e7",
+            "instruction": "inc esi ; add eax, 0x804c040 ; add ecx, ecx ; ret"
+        },
+        {
+            "address": "0x08049177",
+            "instruction": "lea esi, [esi] ; nop ; ret"
+        },
+        {
+            "address": "0x080491c4",
+            "instruction": "lea esi, [esi] ; ret"
+        },
+        {
+            "address": "0x08049421",
+            "instruction": "lea esp, [ecx - 4] ; ret"
+        },
+        {
+            "address": "0x08049175",
+            "instruction": "leave ; ret"
+        },
+        {
+            "address": "0x08049020",
+            "instruction": "les ecx, ptr [eax] ; pop ebx ; ret"
+        },
+        {
+            "address": "0x08049173",
+            "instruction": "les edx, ptr [eax] ; leave ; ret"
+        },
+        {
+            "address": "0x080492b0",
+            "instruction": "les edx, ptr [eax] ; nop ; mov ebx, dword ptr [ebp - 4] ; leave ; ret"
+        },
+        {
+            "address": "0x08049178",
+            "instruction": "mov ah, 0x26 ; add byte ptr [eax], al ; add byte ptr [eax], al ; nop ; ret"
+        },
+        {
+            "address": "0x080491f2",
+            "instruction": "mov ah, 0x26 ; add byte ptr [eax], al ; add byte ptr [eax], al ; ret"
+        },
+        {
+            "address": "0x080491e8",
+            "instruction": "mov byte ptr [0x804c040], 1 ; leave ; ret"
+        },
+        {
+            "address": "0x080492b3",
+            "instruction": "mov ebx, dword ptr [ebp - 4] ; leave ; ret"
+        },
+        {
+            "address": "0x0804911d",
+            "instruction": "mov ebx, dword ptr [esp] ; ret"
+        },
+        {
+            "address": "0x0804912f",
+            "instruction": "nop ; endbr32 ; ret"
+        },
+        {
+            "address": "0x080492b2",
+            "instruction": "nop ; mov ebx, dword ptr [ebp - 4] ; leave ; ret"
+        },
+        {
+            "address": "0x0804913f",
+            "instruction": "nop ; mov ebx, dword ptr [esp] ; ret"
+        },
+        {
+            "address": "0x0804912e",
+            "instruction": "nop ; nop ; endbr32 ; ret"
+        },
+        {
+            "address": "0x0804913e",
+            "instruction": "nop ; nop ; mov ebx, dword ptr [esp] ; ret"
+        },
+        {
+            "address": "0x0804912c",
+            "instruction": "nop ; nop ; nop ; endbr32 ; ret"
+        },
+        {
+            "address": "0x0804913c",
+            "instruction": "nop ; nop ; nop ; mov ebx, dword ptr [esp] ; ret"
+        },
+        {
+            "address": "0x0804913a",
+            "instruction": "nop ; nop ; nop ; nop ; mov ebx, dword ptr [esp] ; ret"
+        },
+        {
+            "address": "0x0804917f",
+            "instruction": "nop ; ret"
+        },
+        {
+            "address": "0x080491ed",
+            "instruction": "or byte ptr [ecx], al ; leave ; ret"
+        },
+        {
+            "address": "0x080492b4",
+            "instruction": "pop ebp ; cld ; leave ; ret"
+        },
+        {
+            "address": "0x08049420",
+            "instruction": "pop ebp ; lea esp, [ecx - 4] ; ret"
+        }
+    ],
+    "safe_return_addresses": [
+        {
+            "name": "main",
+            "address": "0x80492b8"
+        }
+    ],
+    "rop_targets": {},
+    "vulnerability_indicators": {
+        "malloc_calls": 1,
+        "has_dangerous_input": true,
+        "has_dangerous_execution": false,
+        "has_fmtstr_func": true,
+        "has_address_leak": false,
+        "risk_level": "HIGH (Potential Format String Vulnerability)"
+    }
+}

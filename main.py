@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Pwn Automation Framework v0.3
-Автоматизация фаззинга и реверса для pwn-челленджей
+Pwn Automation Framework v0.4
+Автоматизация фаззинга, реверса и решения keygen-задач для pwn-челленджей
 """
 
 import sys
@@ -17,8 +17,8 @@ from modules.offset_finder import OffsetFinder
 def print_usage():
     print("""
     ╔═══════════════════════════════════════════════════════════╗
-    ║           🐇 PWN AUTOMATION FRAMEWORK v0.3             ║
-    ║      Автоматизация фаззинга и реверса для pwn            ║
+    ║            PWN AUTOMATION FRAMEWORK v0.4             ║
+    ║      Автоматизация фаззинга, реверса и keygen            ║
     ╚═══════════════════════════════════════════════════════════╝
     
     Использование:
@@ -30,7 +30,31 @@ def print_usage():
       python3 main.py analyze-func <binary> [func]  - Анализ конкретной функции
       python3 main.py find-offset <binary>          - Автопоиск смещения через cyclic + GDB
       python3 main.py calc-offset <binary> <buf> [align] - Ручной расчет смещения
+      python3 main.py solve-keygen <binary>         - Автоматическое решение keygen через GDB
     """)
+
+
+def solve_keygen(binary_path):
+    """Автоматическое решение keygenme через GDB"""
+    from modules.keygen_gdb_solver import KeygenGDBSolver
+    
+    print("\n🔓 ЗАПУСК АВТОМАТИЧЕСКОГО РЕШЕНИЯ KEYGEN")
+    print("=" * 60)
+    
+    solver = KeygenGDBSolver(binary_path)
+    key = solver.solve()
+    
+    if key:
+        print(f"\n[+] ✅ Флаг для отправки: {key}")
+        print("[+] Не забудь закоммитить решение!")
+    else:
+        print("\n[-] ❌ Автоматическое решение не сработало.")
+        print("[*] Попробуй вручную через GDB:")
+        print(f"    gdb {binary_path}")
+        print(f"    (gdb) start")
+        print(f"    (gdb) break *$rebase(0x141a)")
+        print(f"    (gdb) continue")
+        print(f"    (gdb) x/s $rbp-0x30")
 
 
 def main():
@@ -54,6 +78,11 @@ def main():
     if not os.path.exists(binary_path):
         print(f"❌ Файл не найден: {binary_path}")
         sys.exit(1)
+    
+    # === КОМАНДА SOLVE-KEYGEN (не требует BinaryAnalyzer) ===
+    if command == 'solve-keygen':
+        solve_keygen(binary_path)
+        return
     
     analyzer = BinaryAnalyzer(binary_path)
     
@@ -85,7 +114,6 @@ def main():
     
     elif command == 'find-offset':
         finder = OffsetFinder(binary_path)
-        # Стандартный промпт для picoCTF. Если задача другая, можно будет добавить аргумент
         prompt = b'Input: ' 
         offset = finder.find_offset(prompt=prompt, max_size=200)
         
