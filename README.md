@@ -54,7 +54,8 @@
 2. Запустите инструмент:
    ```bash
    python3 main.py analyze ./target_binary
-   python3 main.py help  # Показать все доступные команды
+   python3 main.py solve-keygen ./keygenme       # Автоматическое решение keygen через GDB (v0.4)
+python3 main.py help  # Показать все доступные команды
 
 ## 🌐 Использование API и Клиента
 
