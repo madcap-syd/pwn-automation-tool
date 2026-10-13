@@ -6,12 +6,14 @@ Pwn Automation Framework v0.4
 
 import sys
 import os
+import json
 
 # Добавляем путь к модулям
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from modules.binary_analyzer import BinaryAnalyzer
 from modules.offset_finder import OffsetFinder
+from src.generators.exploit_generator import generate_exploit
 
 
 def print_usage():
@@ -31,6 +33,7 @@ def print_usage():
       python3 main.py find-offset <binary>          - Автопоиск смещения через cyclic + GDB
       python3 main.py calc-offset <binary> <buf> [align] - Ручной расчет смещения
       python3 main.py solve-keygen <binary>         - Автоматическое решение keygen через GDB
+      python3 main.py generate-exploit <binary>   - Автогенерация эксплойта (ROP, FSB, Heap Tcache)
     """)
 
 
@@ -47,6 +50,64 @@ def solve_keygen(binary_path):
     if key:
         print(f"\n[+] ✅ Флаг для отправки: {key}")
         print("[+] Не забудь закоммитить решение!")
+    elif command == 'generate-exploit':
+        print("\n🛠️ ЗАПУСК ГЕНЕРАТОРА ЭКСПЛОЙТОВ")
+        print("=" * 60)
+        try:
+            # 1. Сначала запускаем полный анализ для создания JSON-отчета
+            print("[*] Шаг 1: Анализ бинарника и создание отчета...")
+            analyzer = BinaryAnalyzer(binary_path)
+            analyzer.full_analysis()
+            
+            # Явно сохраняем отчет в JSON для генератора
+            os.makedirs("output", exist_ok=True)
+            
+            # Универсальный сбор данных через getattr с дефолтными значениями
+            report_data = {
+                "binary": binary_path,
+                "arch": getattr(analyzer, 'arch', 'x86_64'),
+                "vulnerability_indicators": {
+                    "risk_level": "HIGH" if getattr(analyzer, 'vuln_functions', []) else "MEDIUM",
+                    "vulnerable_functions": getattr(analyzer, 'vuln_functions', []),
+                    "has_dangerous_input": True
+                },
+                "gadgets": getattr(analyzer, 'gadgets', []),
+                "rop_targets": getattr(analyzer, 'rop_targets', {}),
+                "functions": {}
+            }
+            
+            # Безопасно извлекаем функции из ELF
+            elf = getattr(analyzer, 'elf', None)
+            if elf and hasattr(elf, 'functions'):
+                for name, func in elf.functions.items():
+                    report_data["functions"][name] = {"address": hex(func.address)}
+            
+            # Безопасно извлекаем GOT/PLT
+            report_data["got_entries"] = getattr(analyzer, 'got_entries', {})
+            report_data["plt_entries"] = getattr(analyzer, 'plt_entries', {})
+            
+            with open("output/analysis.json", "w") as f:
+                json.dump(report_data, f, indent=2)
+            print("[+] Отчет сохранен в output/analysis.json")
+            
+            # 2. Генерируем эксплойт на основе созданного отчета
+            print("[*] Шаг 2: Генерация эксплойта...")
+            from src.generators.exploit_generator import generate_exploit
+            
+            json_report = "output/analysis.json"
+            output_exploit = "exploit.py"
+            
+            generate_exploit(json_report, output_exploit)
+            
+            print(f"\n[+] ✅ Эксплойт успешно сгенерирован: {output_exploit}")
+            print("[!] Проверь сгенерированный код и адаптируй OFFSET под задачу!")
+            
+        except FileNotFoundError:
+            print("[-] ❌ Отчет output/analysis.json не найден.")
+            print("[*] Попробуй вручную: python3 main.py analyze <binary>")
+        except Exception as e:
+            print(f"[-]  Ошибка генерации: {e}")
+
     else:
         print("\n[-] ❌ Автоматическое решение не сработало.")
         print("[*] Попробуй вручную через GDB:")
@@ -133,6 +194,64 @@ def main():
         finder = OffsetFinder(binary_path)
         finder.calculate_from_ghidra(buffer_size, alignment)
     
+    elif command == 'generate-exploit':
+        print("\n🛠️ ЗАПУСК ГЕНЕРАТОРА ЭКСПЛОЙТОВ")
+        print("=" * 60)
+        try:
+            # 1. Сначала запускаем полный анализ для создания JSON-отчета
+            print("[*] Шаг 1: Анализ бинарника и создание отчета...")
+            analyzer = BinaryAnalyzer(binary_path)
+            analyzer.full_analysis()
+            
+            # Явно сохраняем отчет в JSON для генератора
+            os.makedirs("output", exist_ok=True)
+            
+            # Универсальный сбор данных через getattr с дефолтными значениями
+            report_data = {
+                "binary": binary_path,
+                "arch": getattr(analyzer, 'arch', 'x86_64'),
+                "vulnerability_indicators": {
+                    "risk_level": "HIGH" if getattr(analyzer, 'vuln_functions', []) else "MEDIUM",
+                    "vulnerable_functions": getattr(analyzer, 'vuln_functions', []),
+                    "has_dangerous_input": True
+                },
+                "gadgets": getattr(analyzer, 'gadgets', []),
+                "rop_targets": getattr(analyzer, 'rop_targets', {}),
+                "functions": {}
+            }
+            
+            # Безопасно извлекаем функции из ELF
+            elf = getattr(analyzer, 'elf', None)
+            if elf and hasattr(elf, 'functions'):
+                for name, func in elf.functions.items():
+                    report_data["functions"][name] = {"address": hex(func.address)}
+            
+            # Безопасно извлекаем GOT/PLT
+            report_data["got_entries"] = getattr(analyzer, 'got_entries', {})
+            report_data["plt_entries"] = getattr(analyzer, 'plt_entries', {})
+            
+            with open("output/analysis.json", "w") as f:
+                json.dump(report_data, f, indent=2)
+            print("[+] Отчет сохранен в output/analysis.json")
+            
+            # 2. Генерируем эксплойт на основе созданного отчета
+            print("[*] Шаг 2: Генерация эксплойта...")
+            from src.generators.exploit_generator import generate_exploit
+            
+            json_report = "output/analysis.json"
+            output_exploit = "exploit.py"
+            
+            generate_exploit(json_report, output_exploit)
+            
+            print(f"\n[+] ✅ Эксплойт успешно сгенерирован: {output_exploit}")
+            print("[!] Проверь сгенерированный код и адаптируй OFFSET под задачу!")
+            
+        except FileNotFoundError:
+            print("[-] ❌ Отчет output/analysis.json не найден.")
+            print("[*] Попробуй вручную: python3 main.py analyze <binary>")
+        except Exception as e:
+            print(f"[-]  Ошибка генерации: {e}")
+
     else:
         print(f"❌ Неизвестная команда: {command}")
         print_usage()
