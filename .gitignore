@@ -23,3 +23,28 @@ ret2win
 __pycache__/
 *.pyc
 venv/
+
+# Ghidra temporary files
+*.rep/
+*.gpr
+
+# GDB history
+.gdb_history
+
+# Temporary analysis files
+*.bin
+decomp_*.txt
+main_check.txt
+success_check.txt
+sbox*.txt
+sbox*.bin
+ghidra_output.txt
+ghidra_decompilation.txt
+
+# Decompiled outputs
+*_report.md
+*_ghidra_analysis.json
+
+# Binary test files (keep source, ignore compiled)
+# checkpass
+# ret2win
