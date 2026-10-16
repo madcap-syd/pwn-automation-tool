@@ -5,6 +5,7 @@ Pwn Automation Framework v0.4
 """
 
 import sys
+from ghidra_analyzer import GhidraAnalyzer
 import os
 import json
 
@@ -19,8 +20,8 @@ from src.generators.exploit_generator import generate_exploit
 def print_usage():
     print("""
     ╔═══════════════════════════════════════════════════════════╗
-    ║            PWN AUTOMATION FRAMEWORK v0.4             ║
-    ║      Автоматизация фаззинга, реверса и keygen            ║
+    ║           PWN AUTOMATION FRAMEWORK v0.4                   ║
+    ║     Автоматизация фаззинга, реверса и keygen              ║
     ╚═══════════════════════════════════════════════════════════╝
     
     Использование:
@@ -33,8 +34,14 @@ def print_usage():
       python3 main.py find-offset <binary>          - Автопоиск смещения через cyclic + GDB
       python3 main.py calc-offset <binary> <buf> [align] - Ручной расчет смещения
       python3 main.py solve-keygen <binary>         - Автоматическое решение keygen через GDB
-      python3 main.py generate-exploit <binary>   - Автогенерация эксплойта (ROP, FSB, Heap Tcache)
-    """)
+      python3 main.py ai-analyze <binary> [вопрос]  - ИИ-анализ бинарника через DeepSeek
+      python3 main.py generate-exploit <binary>     - Автогенерация эксплойта (ROP, FSB, Heap Tcache)
+      python3 main.py ghidra <binary> [опции]       - Глубокий анализ через Ghidra Headless
+          --rust                                    - Режим для Rust/Go бинарников
+          --timeout N                               - Таймаут анализа (по умолч. 120с)
+          --report FILE                             - Сохранить отчет в Markdown
+""")
+
 
 
 def solve_keygen(binary_path):
@@ -117,6 +124,33 @@ def solve_keygen(binary_path):
         print(f"    (gdb) continue")
         print(f"    (gdb) x/s $rbp-0x30")
 
+
+
+def cmd_ghidra(args):
+    """Обработчик команды ghidra для глубокого анализа бинарника."""
+    try:
+        analyzer = GhidraAnalyzer(args.binary, timeout=args.timeout, force_rust=args.rust)
+        results = analyzer.analyze()
+        if results:
+            print("\n" + "="*80)
+            print("КРАТКАЯ СВОДКА АНАЛИЗА GHIDRA")
+            print("="*80)
+            if results.get('functions'):
+                for func in results['functions']:
+                    print(f"🎯 {func['name']} @ {func['address']}")
+                    print(f"   Ключи: {', '.join(func['keywords'])}")
+            if args.report:
+                analyzer.save_report(results, args.report)
+            else:
+                import json
+                json_output = args.binary + "_ghidra_analysis.json"
+                with open(json_output, 'w') as f:
+                    json.dump(results, f, indent=2)
+                print(f"\n💾 Результаты: {json_output}")
+    except Exception as e:
+        print(f"❌ Ошибка Ghidra анализа: {e}")
+        import sys
+        sys.exit(1)
 
 def main():
     if len(sys.argv) < 2:
@@ -251,6 +285,59 @@ def main():
             print("[*] Попробуй вручную: python3 main.py analyze <binary>")
         except Exception as e:
             print(f"[-]  Ошибка генерации: {e}")
+
+    elif command == 'ai-analyze':
+        print("\nИИ-АНАЛИЗ (DeepSeek)")
+        print("=" * 60)
+        from modules.ai_analyzer import analyze_binary
+        custom_q = " ".join(sys.argv[3:]) if len(sys.argv) > 3 else ""
+        result = analyze_binary(binary_path, custom_q)
+        print(result)
+
+
+    elif command == 'ghidra':
+        print("\n🦑 GHIDRA HEADLESS АНАЛИЗ")
+        print("=" * 60)
+        try:
+            is_rust = '--rust' in sys.argv
+            timeout = 120
+            report_file = None
+            # Парсим дополнительные аргументы
+            i = 3
+            while i < len(sys.argv):
+                if sys.argv[i] == '--rust':
+                    is_rust = True
+                elif sys.argv[i] == '--timeout' and i + 1 < len(sys.argv):
+                    timeout = int(sys.argv[i + 1])
+                    i += 1
+                elif sys.argv[i] == '--report' and i + 1 < len(sys.argv):
+                    report_file = sys.argv[i + 1]
+                    i += 1
+                i += 1
+            
+            analyzer = GhidraAnalyzer(binary_path, timeout=timeout, force_rust=is_rust)
+            results = analyzer.analyze()
+            if results:
+                print("\n" + "="*80)
+                print("КРАТКАЯ СВОДКА АНАЛИЗА GHIDRA")
+                print("="*80)
+                if results.get('functions'):
+                    print(f"\n🎯 Найдено {len(results['functions'])} ключевых функций:")
+                    for func in results['functions']:
+                        print(f"   - {func['name']} @ {func['address']}")
+                        print(f"     Ключи: {', '.join(func['keywords'])}")
+                if report_file:
+                    analyzer.save_report(results, report_file)
+                else:
+                    import json
+                    json_output = binary_path + "_ghidra_analysis.json"
+                    with open(json_output, 'w') as f:
+                        json.dump(results, f, indent=2)
+                    print(f"\n💾 Результаты: {json_output}")
+        except Exception as e:
+            print(f"❌ Ошибка Ghidra анализа: {e}")
+            import traceback
+            traceback.print_exc()
 
     else:
         print(f"❌ Неизвестная команда: {command}")

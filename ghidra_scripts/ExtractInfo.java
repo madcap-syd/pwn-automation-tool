@@ -13,7 +13,7 @@ import java.io.PrintWriter;
 public class ExtractInfo extends GhidraScript {
     @Override
     public void run() throws Exception {
-        String outputFile = "/tmp/ghidra_proj_caxfjqii/analysis_result.txt";
+        String outputFile = "/tmp/ghidra_proj_upqpznp0/analysis_result.txt";
         PrintWriter out = new PrintWriter(new FileWriter(outputFile));
         
         // 1. Извлекаем строки
