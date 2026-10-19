@@ -6,6 +6,7 @@ Pwn Automation Framework v0.4
 
 import sys
 from ghidra_analyzer import GhidraAnalyzer
+from modules.asm_xor_solver import analyze_asm_xor
 import os
 import json
 
@@ -179,7 +180,11 @@ def main():
         solve_keygen(binary_path)
         return
     
-    analyzer = BinaryAnalyzer(binary_path)
+    elf_commands = ['analyze', 'checksec', 'find-vuln', 'find-flag', 'list-funcs', 'analyze-func', 'find-offset', 'calc-offset', 'generate-exploit']
+    if command in elf_commands:
+        analyzer = BinaryAnalyzer(binary_path)
+    else:
+        analyzer = None
     
     # === КОМАНДЫ АНАЛИЗА ===
     if command == 'analyze':
@@ -338,6 +343,12 @@ def main():
             print(f"❌ Ошибка Ghidra анализа: {e}")
             import traceback
             traceback.print_exc()
+
+
+    elif command == 'solve-asm-xor':
+        print("\n🧩 АВТОМАТИЧЕСКИЙ ПОИСК И РЕШЕНИЕ XOR-ПАТТЕРНОВ В АССЕМБЛЕРЕ")
+        print("=" * 60)
+        analyze_asm_xor(binary_path)
 
     else:
         print(f"❌ Неизвестная команда: {command}")
